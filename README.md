@@ -479,3 +479,25 @@ All / Food / Transport / etc.
  That's the skill gap between your Pig Game and your next project.
 
  Once you can comfortably build this without a tutorial, **then** we add `localStorage`, and suddenly your expense tracker survives page refreshes. That's a perfect next incremental challenge.
+
+You open the website and it lets you record the money you spend.
+
+You enter what you bought, how much it cost, and what category it belongs to. For example, you might enter "Lunch", "800", and "Food". The app saves that expense and shows it in a list.
+
+As you add more expenses, the app keeps track of all of them and automatically calculates how much you've spent in total.
+
+It can also organize your spending by category. So if you've entered several food, transportation, and entertainment expenses, it can tell you how much you've spent on each.
+
+You can then delete an expense if you entered something incorrectly, or edit it if you want to change the amount, description, or category.
+
+You can also choose a category to see only expenses from that category.
+
+So, in simple terms:
+
+It's a small application where you record your expenses, and the application keeps your list organized and tells you where your money is going.
+
+For your project, the core flow is:
+
+Enter expense → save it → display it → calculate totals → edit/delete/filter it.
+
+That's all you need to understand before planning the code. Then you can make the UI and structure decisions yourself.
