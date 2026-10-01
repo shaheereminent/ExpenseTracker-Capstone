@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CozyPaws — Expense Tracker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="topbar">
+
+            <a href="#" class="brand">
+                <span class="brand-cat">🐱</span>
+
+                <div>
+                    <span class="brand-name">CozyPaws</span>
+                    <span class="brand-subtitle">your little money journal</span>
+                </div>
+            </a>
+
+            <div class="header-date">
+                <span class="date-icon">☀️</span>
+                <span>Good morning!</span>
+            </div>
+
+        </header>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="dashboard">
+
+            <!-- ================= HERO / TOTAL ================= -->
+
+            <section class="hero-card">
+
+                <div class="hero-content">
+
+                    <div class="hero-label">
+                        <span class="paw">🐾</span>
+                        <span>Total spending</span>
+                    </div>
+
+                    <h1 id="total-expenses">Rs. 0</h1>
+
+                    <p class="hero-message">
+                        Every little expense counts. Keep an eye on your spending,
+                        one paw at a time. 🐾
+                    </p>
+
+                </div>
+
+                <div class="hero-cat" aria-hidden="true">
+                    <div class="cat-ear left-ear"></div>
+                    <div class="cat-ear right-ear"></div>
+                    <div class="cat-face">
+                        <span class="cat-eye left-eye"></span>
+                        <span class="cat-eye right-eye"></span>
+                        <span class="cat-nose"></span>
+                        <span class="cat-mouth"></span>
+                    </div>
+                </div>
+
+                <div class="hero-decoration decoration-one">✦</div>
+                <div class="hero-decoration decoration-two">♡</div>
+                <div class="hero-decoration decoration-three">✦</div>
+
+            </section>
+
+
+            <!-- ================= CATEGORY STATS ================= -->
+
+            <section class="category-grid">
+
+                <article class="category-card food-card">
+
+                    <div class="category-top">
+                        <div class="category-icon">🍜</div>
+
+                        <span class="category-name">
+                            Food
+                        </span>
+                    </div>
+
+                    <strong id="food-total">Rs. 0</strong>
+
+                    <div class="category-progress">
+                        <span style="width: 0%;"></span>
+                    </div>
+
+                </article>
+
+
+                <article class="category-card transport-card">
+
+                    <div class="category-top">
+                        <div class="category-icon">🚌</div>
+
+                        <span class="category-name">
+                            Transport
+                        </span>
+                    </div>
+
+                    <strong id="transport-total">Rs. 0</strong>
+
+                    <div class="category-progress">
+                        <span style="width: 0%;"></span>
+                    </div>
+
+                </article>
+
+
+                <article class="category-card entertainment-card">
+
+                    <div class="category-top">
+                        <div class="category-icon">🎮</div>
+
+                        <span class="category-name">
+                            Entertainment
+                        </span>
+                    </div>
+
+                    <strong id="entertainment-total">Rs. 0</strong>
+
+                    <div class="category-progress">
+                        <span style="width: 0%;"></span>
+                    </div>
+
+                </article>
+
+
+                <article class="category-card other-card">
+
+                    <div class="category-top">
+                        <div class="category-icon">🌱</div>
+
+                        <span class="category-name">
+                            Other
+                        </span>
+                    </div>
+
+                    <strong id="other-total">Rs. 0</strong>
+
+                    <div class="category-progress">
+                        <span style="width: 0%;"></span>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ================= CONTENT GRID ================= -->
+
+            <section class="content-grid">
+
+
+                <!-- ================= ADD EXPENSE ================= -->
+
+                <aside class="expense-form-card">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <span class="eyebrow">KEEP TRACK</span>
+
+                            <h2>
+                                Add an expense
+                                <span>✦</span>
+                            </h2>
+
+                            <p>
+                                What did you spend your money on?
+                            </p>
+                        </div>
+
+                        <div class="mini-cat">
+                            🐱
+                        </div>
+
+                    </div>
+
+
+                    <form id="expense-form">
+
+                        <!-- Description -->
+
+                        <div class="form-group">
+
+                            <label for="description">
+                                What did you buy?
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🛍️
+                                </span>
+
+                                <input
+                                    type="text"
+                                    id="description"
+                                    name="description"
+                                    placeholder="e.g. Lunch at McDonald's"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Amount -->
+
+                        <div class="form-group">
+
+                            <label for="amount">
+                                How much?
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="currency-symbol">
+                                    Rs.
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="amount"
+                                    name="amount"
+                                    placeholder="0"
+                                    min="0"
+                                    step="1"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Category -->
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Category
+                            </label>
+
+                            <div class="input-wrapper select-wrapper">
+
+                                <span class="input-icon">
+                                    🏷️
+                                </span>
+
+                                <select
+                                    id="category"
+                                    name="category"
+                                    required
+                                >
+                                    <option value="Food">Food</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Other">Other</option>
+                                </select>
+
+                                <span class="select-arrow">
+                                   ⌄
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Submit -->
+
+                        <button
+                            type="submit"
+                            class="add-expense-btn"
+                            id="add-expense-btn"
+                        >
+
+                            <span class="btn-paw">🐾</span>
+
+                            <span>
+                                Add Expense
+                            </span>
+
+                            <span class="btn-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+                    </form>
+
+
+                    <div class="form-tip">
+                        <span>💡</span>
+                        <span>
+                            Small expenses add up. Keep them all here.
+                        </span>
+                    </div>
+
+                </aside>
+
+
+                <!-- ================= TRANSACTIONS ================= -->
+
+                <section class="transactions-card">
+
+                    <div class="transactions-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                YOUR SPENDING
+                            </span>
+
+                            <h2>
+                                Transactions
+                            </h2>
+
+                        </div>
+
+
+                        <!-- Filter -->
+
+                        <div class="filter-wrapper">
+
+                            <label for="category-filter">
+                                Show
+                            </label>
+
+                            <div class="filter-select">
+
+                                <select id="category-filter">
+
+                                    <option value="all">
+                                        All expenses
+                                    </option>
+
+                                    <option value="Food">
+                                        🍜 Food
+                                    </option>
+
+                                    <option value="Transport">
+                                        🚌 Transport
+                                    </option>
+
+                                    <option value="Entertainment">
+                                        🎮 Entertainment
+                                    </option>
+
+                                    <option value="Shopping">
+                                        🛍️ Shopping
+                                    </option>
+
+                                    <option value="Other">
+                                        🌱 Other
+                                    </option>
+
+                                </select>
+
+                                <span>⌄</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Transaction list -->
+
+                    <div
+                        class="expense-list"
+                        id="expense-list"
+                    >
+
+
+                        <!-- ================= EMPTY STATE ================= -->
+
+                        <div
+                            class="empty-state"
+                            id="empty-state"
+                        >
+
+                            <div class="empty-cat">
+
+                                <div class="empty-cat-ears">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+
+                                <div class="empty-cat-face">
+                                    <i></i>
+                                    <i></i>
+                                    <b></b>
+                                </div>
+
+                            </div>
+
+                            <h3>
+                                Nothing here yet
+                            </h3>
+
+                            <p>
+                                Your little expense journal is waiting
+                                for its first entry.
+                            </p>
+
+                            <span class="empty-paws">
+                                🐾 &nbsp; 🐾 &nbsp; 🐾
+                            </span>
+
+                        </div>
+
+
+                        <!--
+                        ==================================================
+                        EXAMPLE TRANSACTION
+
+                        Your JavaScript can generate these dynamically.
+
+                        ==================================================
+                        -->
+
+                        <!--
+
+                        <article class="expense-item">
+
+                            <div class="expense-icon food">
+                                🍜
+                            </div>
+
+                            <div class="expense-info">
+
+                                <h3>McDonald's</h3>
+
+                                <span class="expense-category">
+                                    Food
+                                </span>
+
+                            </div>
+
+                            <div class="expense-amount">
+                                Rs. 1,200
+                            </div>
+
+                            <div class="expense-actions">
+
+                                <button
+                                    class="edit-btn"
+                                    data-id="1"
+                                    aria-label="Edit expense"
+                                >
+                                    ✎
+                                </button>
+
+                                <button
+                                    class="delete-btn"
+                                    data-id="1"
+                                    aria-label="Delete expense"
+                                >
+                                    ×
+                                </button>
+
+                            </div>
+
+                        </article>
+
+                        -->
+
+
+                    </div>
+
+
+                    <!-- List footer -->
+
+                    <div class="transactions-footer">
+
+                        <span>
+                            <span id="expense-count">0</span>
+                            expenses recorded
+                        </span>
+
+                        <span class="footer-cat">
+                            made with 🐾 &amp; care
+                        </span>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- ================= BOTTOM MESSAGE ================= -->
+
+            <section class="bottom-note">
+
+                <div class="note-cat">
+                    🐈
+                </div>
+
+                <div>
+                    <strong>
+                        A little reminder from your cat...
+                    </strong>
+
+                    <p>
+                        You don't have to be perfect with money.
+                        Just pay attention to where it goes. 🤎
+                    </p>
+                </div>
+
+                <span class="note-heart">
+                    ♡
+                </span>
+
+            </section>
+
+        </main>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="footer">
+
+            <span>
+                CozyPaws Expense Tracker
+            </span>
+
+            <span>
+                Take care of your money. Take care of yourself. 🐾
+            </span>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
