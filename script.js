@@ -17,10 +17,14 @@ const DOM =
 
 // ==================== DATA ==================== //
 
+
+
+// id for each object of expense and it will icrement by 1 on each submit because id must be unique
 let nextID = 1;
 
 
 
+// declaring expenses array because on each submit this expense array will be populated
 const expenses = [];
 
 
@@ -37,12 +41,13 @@ DOM.expenseForm.addEventListener('submit', function(e)
         category    : DOM.category.value
     };
 
-    expenses.push(expense)
-    
-    for (let i=0; i<expenses.length; i++)
-    {
-        console.log(expenses[i])
-    };
-    
+    DOM.description.value = "";
+    DOM.amount.value      = "";
+    DOM.category.value    = "Food";
+
+    expenses.push(expense);
+
+    console.log(expenses);
+     
 });
 
