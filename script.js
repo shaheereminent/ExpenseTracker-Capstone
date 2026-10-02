@@ -1,41 +1,48 @@
 "use strict";
 
+
+
 // ==================== DOM CACHING ==================== //
 
 const DOM = 
 {
-    description: document.getElementById('description'),
-    amount     : document.getElementById('amount')
+    description : document.getElementById('description'),
+    amount      : document.getElementById('amount'),
+    category    : document.getElementById('category'),
+    expenseBtn  : document.getElementById('add-expense-btn'),
+    expenseForm : document.getElementById('expense-form')
 };
 
-console.log(DOM.description, DOM.amount)
+
 
 // ==================== DATA ==================== //
 
+let nextID = 1;
+
+
+
 const expenses = [];
 
-console.log(expenses);
 
-expenses.push
-(
-    {
-        id         : Date.now(),
-        amount     : 520,
-        description: "What goes here comes here",
-        category   : "Food"
-    },
 
-    {
-        id         : Date.now(),
-        amount     : 631,
-        description: "a mistake was made",
-        category   : "Travel"
-    }
-);
-
-for (let i=0; i<expenses.length; i++)
+DOM.expenseForm.addEventListener('submit', function(e)
 {
-    console.log(i)
-    console.log(expenses[i])
-};
+    e.preventDefault();
+    
+    const expense =
+    {
+        id          : nextID++,
+        description : DOM.description.value,
+        amount      : Number(DOM.amount.value),
+        category    : DOM.category.value
+    };
+
+    expenses.push(expense)
+    
+    for (let i=0; i<expenses.length; i++)
+    {
+        console.log(expenses[i])
+    };
+    
+});
 
