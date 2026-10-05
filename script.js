@@ -35,7 +35,6 @@ const expenses = [];
 
 
 // declaring totalExpenses array because gotta calculate sum of all expense
-// const totalExpenses = [];
 const totalExpenses =
 {
     total              : [],
@@ -49,25 +48,6 @@ const totalExpenses =
 
 
 // ==================== ADD TOTALS ==================== //
-
-
-/*
-const  calculateTotalExpense = function(amount)
-{
-
-    let sum = 0;
-
-    totalExpenses.total.push(amount);
-
-    for (let i=0; i<totalExpenses.length; i++)
-    {
-        sum += totalExpenses[i]
-    };
-
-    DOM.totalExpense.textContent = `Rs. ${sum}`
-    
-};
-*/
 
 
 
