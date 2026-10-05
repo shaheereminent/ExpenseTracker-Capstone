@@ -35,20 +35,29 @@ const expenses = [];
 
 
 // declaring totalExpenses array because gotta calculate sum of all expense
-const totalExpenses = [];
+// const totalExpenses = [];
+const totalExpenses =
+{
+    total              : [],
+    FoodTotal          : [],
+    TransportTotal     : [],
+    EntertainmentTotal : [],
+    ShoppingTotal      : [],
+    OtherTotal         : []
+};
 
 
 
 // ==================== ADD TOTALS ==================== //
 
 
-
+/*
 const  calculateTotalExpense = function(amount)
 {
 
     let sum = 0;
 
-    totalExpenses.push(amount);
+    totalExpenses.total.push(amount);
 
     for (let i=0; i<totalExpenses.length; i++)
     {
@@ -58,6 +67,7 @@ const  calculateTotalExpense = function(amount)
     DOM.totalExpense.textContent = `Rs. ${sum}`
     
 };
+*/
 
 
 
@@ -147,7 +157,12 @@ DOM.expenseForm.addEventListener('submit', function(e)
 
     expenses.push(expense);
 
-    calculateTotalExpense(expense.amount);
+    // calculateTotalExpense(expense.amount);
+
+    totalExpenses.total.push(expense.amount);
+
+    // add total based on category
+    totalExpenses[`${expense.category}Total`].push(expense.amount);
     
     // resetting values upon submit because user can directly start adding another expense rather than removing each input value themselves
     DOM.description.value = "";
@@ -159,8 +174,6 @@ DOM.expenseForm.addEventListener('submit', function(e)
     renderExpense();
 
     console.log(totalExpenses);
-
-    //DOM.totalExpenses.textContent = `${}`
      
 });
 
