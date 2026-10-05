@@ -14,6 +14,8 @@ const DOM =
     expenseForm : document.getElementById('expense-form'),
     emptyState  : document.querySelector ('.empty-state'),
     expenseList : document.querySelector ('.expense-list'),
+    editBtn     : document.querySelector ('.edit-btn'),
+    totalExpense: document.getElementById('total-expenses')
 };
 
 
@@ -29,6 +31,34 @@ let nextID = 1;
 
 // declaring expenses array because on each submit this expense array will be populated
 const expenses = [];
+
+
+
+// declaring totalExpenses array because gotta calculate sum of all expense
+const totalExpenses = [];
+
+
+
+// ==================== ADD TOTALS ==================== //
+
+
+
+const  calculateTotalExpense = function(amount)
+{
+
+    let sum = 0;
+
+    totalExpenses.push(amount);
+
+    for (let i=0; i<totalExpenses.length; i++)
+    {
+        sum += totalExpenses[i]
+    };
+
+    DOM.totalExpense.textContent = `Rs. ${sum}`
+    
+};
+
 
 
 
@@ -115,7 +145,9 @@ DOM.expenseForm.addEventListener('submit', function(e)
         category    : DOM.category.value
     };
 
-    expenses.push(expense); 
+    expenses.push(expense);
+
+    calculateTotalExpense(expense.amount);
     
     // resetting values upon submit because user can directly start adding another expense rather than removing each input value themselves
     DOM.description.value = "";
@@ -125,6 +157,23 @@ DOM.expenseForm.addEventListener('submit', function(e)
     console.log(expenses);
 
     renderExpense();
+
+    console.log(totalExpenses);
+
+    //DOM.totalExpenses.textContent = `${}`
      
 });
 
+
+
+// ==================== EDIT BUTTON EVENT LISTENER ==================== //
+
+
+/*
+DOM.editBtn.addEventListener('click', function()
+{
+
+    console.log("working?");
+
+});
+*/
