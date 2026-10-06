@@ -1130,11 +1130,13 @@ HERO CAT
 
 .expense-list {
     height: clamp(300px, 46vh, 440px);
+
     overflow-y: auto;
     overflow-x: hidden;
+
     padding-right: 6px;
+
     scroll-behavior: smooth;
-    overscroll-behavior: contain;
 
     scrollbar-width: thin;
     scrollbar-color: var(--cream-dark) transparent;
@@ -1154,6 +1156,7 @@ HERO CAT
     border: 2px solid var(--surface);
     background-clip: padding-box;
     border-radius: 999px;
+
     transition: background 0.2s ease;
 }
 

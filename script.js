@@ -78,7 +78,7 @@ const expenseToHTML = function(expense)
                 <span class="expense-category">${expense.category}</span>
             </div>
 
-            <div class="expense-amount">${expense.amount}</div>
+            <div class="expense-amount">$${expense.amount}</div>
 
             <div class="expense-actions">
                 <button class="edit-btn" data-id="${expense.id}" aria-label="Edit expense">✎</button>
