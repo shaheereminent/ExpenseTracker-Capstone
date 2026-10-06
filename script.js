@@ -158,12 +158,9 @@ DOM.expenseForm.addEventListener('submit', function(e)
     DOM.entertainmentTotal.textContent = `$${totalExpenses.EntertainmentTotal}`;
     DOM.shoppingTotal.textContent      = `$${totalExpenses.ShoppingTotal}`;
     DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
-    DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
 
     renderExpense();
 
-    DOM.editBtn   = document.querySelector('edit-btn');
-    DOM.deleteBtn = document.querySelector('delete-btn');
      
 });
 
