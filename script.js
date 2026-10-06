@@ -180,6 +180,8 @@ DOM.expenseList.addEventListener('click', function(e)
         const id = Number(e.target.dataset.id);
 
         let expense = expenseItems.find(item => item.id === id);
+
+        console.log(expense);
         
         return;
     };
