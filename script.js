@@ -8,14 +8,19 @@
 
 const DOM = 
 {
-    description : document.getElementById('description'),
-    amount      : document.getElementById('amount'),
-    category    : document.getElementById('category'),
-    expenseForm : document.getElementById('expense-form'),
-    emptyState  : document.querySelector ('.empty-state'),
-    expenseList : document.querySelector ('.expense-list'),
-    editBtn     : document.querySelector ('.edit-btn'),
-    totalExpense: document.getElementById('total-expenses')
+    description       : document.getElementById('description'),
+    amount            : document.getElementById('amount'),
+    category          : document.getElementById('category'),
+    expenseForm       : document.getElementById('expense-form'),
+    emptyState        : document.querySelector ('.empty-state'),
+    expenseList       : document.querySelector ('.expense-list'),
+    editBtn           : document.querySelector ('.edit-btn'),
+    totalExpense      : document.getElementById('total-expenses'),
+    foodTotal         : document.getElementById('food-total'),
+    transportTotal    : document.getElementById('transport-total'),
+    shoppingTotal     : document.getElementById('shopping-total'),
+    entertainmentTotal: document.getElementById('entertainment-total'),
+    otherTotal        : document.getElementById('other-total')
 };
 
 
@@ -30,19 +35,19 @@ let nextID = 1;
 
 
 // declaring expenses array because on each submit this expense array will be populated
-const expenses = [];
+const expenseItems = [];
 
 
 
-// declaring totalExpenses array because gotta calculate sum of all expense
+// declaring & storing total score of each category
 const totalExpenses =
 {
-    total              : [],
-    FoodTotal          : [],
-    TransportTotal     : [],
-    EntertainmentTotal : [],
-    ShoppingTotal      : [],
-    OtherTotal         : []
+    total              : 0,
+    FoodTotal          : 0,
+    TransportTotal     : 0,
+    EntertainmentTotal : 0,
+    ShoppingTotal      : 0,
+    OtherTotal         : 0
 };
 
 
@@ -93,7 +98,7 @@ const expenseToHTML = function(expense)
 const renderExpense = function()
 {
     // checking if expenses array is empty show empty state
-    if (expenses.length === 0)
+    if (expenseItems.length === 0)
     {
         DOM.emptyState.classList.remove('hidden');
         DOM.expenseList.innerHTML = "";
@@ -108,9 +113,9 @@ const renderExpense = function()
     let expenseHTML = "";
 
     // adding html based on each items in the array
-    for (let i=expenses.length-1; i>=0; i--)
+    for (let i=expenseItems.length-1; i>=0; i--)
     {
-        expenseHTML += expenseToHTML(expenses[i]);
+        expenseHTML += expenseToHTML(expenseItems[i]);
     };
 
     DOM.expenseList.innerHTML = expenseHTML;
@@ -135,21 +140,27 @@ DOM.expenseForm.addEventListener('submit', function(e)
         category    : DOM.category.value
     };
 
-    expenses.push(expense);
+    expenseItems.push(expense);
 
     // calculateTotalExpense(expense.amount);
 
-    totalExpenses.total.push(expense.amount);
+    totalExpenses.total += expense.amount;
 
     // add total based on category
-    totalExpenses[`${expense.category}Total`].push(expense.amount);
+    totalExpenses[`${expense.category}Total`] += expense.amount;
     
     // resetting values upon submit because user can directly start adding another expense rather than removing each input value themselves
     DOM.description.value = "";
     DOM.amount.value      = "";
     DOM.category.value    = "Food";
 
-    console.log(expenses);
+    // render total spent values for each category and for overall total
+    DOM.totalExpense.textContent       = totalExpenses.total
+    DOM.foodTotal.textContent          = totalExpenses.FoodTotal
+    DOM.transportTotal.textContent     = totalExpenses.TransportTotal
+    DOM.entertainmentTotal.textContent = totalExpenses.EntertainmentTotal
+    DOM.shoppingTotal.textContent      = totalExpenses.ShoppingTotal
+    DOM.otherTotal.textContent         = totalExpenses.OtherTotal
 
     renderExpense();
 
