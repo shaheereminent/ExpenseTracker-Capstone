@@ -52,10 +52,6 @@ const totalExpenses =
 
 
 
-// ==================== ADD TOTALS ==================== //
-
-
-
 
 const ICONS = 
 {
@@ -155,12 +151,13 @@ DOM.expenseForm.addEventListener('submit', function(e)
     DOM.category.value    = "Food";
 
     // render total spent values for each category and for overall total
-    DOM.totalExpense.textContent       = totalExpenses.total
-    DOM.foodTotal.textContent          = totalExpenses.FoodTotal
-    DOM.transportTotal.textContent     = totalExpenses.TransportTotal
-    DOM.entertainmentTotal.textContent = totalExpenses.EntertainmentTotal
-    DOM.shoppingTotal.textContent      = totalExpenses.ShoppingTotal
-    DOM.otherTotal.textContent         = totalExpenses.OtherTotal
+    DOM.totalExpense.textContent       = `$${totalExpenses.total}`; 
+    DOM.foodTotal.textContent          = `$${totalExpenses.FoodTotal}`;
+    DOM.transportTotal.textContent     = `$${totalExpenses.TransportTotal}`;
+    DOM.entertainmentTotal.textContent = `$${totalExpenses.EntertainmentTotal}`;
+    DOM.shoppingTotal.textContent      = `$${totalExpenses.ShoppingTotal}`;
+    DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
+    DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
 
     renderExpense();
 

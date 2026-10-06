@@ -1,14 +1,11 @@
 /* =========================================================
-   COZYPAWS EXPENSE TRACKER
-   ========================================================= */
-
+COZYPAWS EXPENSE TRACKER
+========================================================= */
 
 /* =========================================================
-   1. VARIABLES
-   ========================================================= */
-
+1. VARIABLES
+========================================================= */
 :root {
-
     --bg: #f8f4ee;
     --bg-soft: #fdfaf6;
     --surface: #ffffff;
@@ -50,13 +47,11 @@
     --radius-sm: 12px;
     --radius: 20px;
     --radius-lg: 28px;
-
 }
 
-
 /* =========================================================
-   2. RESET
-   ========================================================= */
+2. RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -69,7 +64,6 @@ html {
 }
 
 body {
-
     min-height: 100vh;
 
     background:
@@ -109,23 +103,20 @@ a {
     text-decoration: none;
 }
 
-
 /* =========================================================
-   3. APP SHELL
-   ========================================================= */
+3. APP SHELL
+========================================================= */
 
 .app-shell {
     width: min(1380px, calc(100% - 48px));
     margin: 0 auto;
 }
 
-
 /* =========================================================
-   4. TOP BAR
-   ========================================================= */
+4. TOP BAR
+========================================================= */
 
 .topbar {
-
     min-height: 100px;
 
     display: flex;
@@ -135,18 +126,15 @@ a {
     padding: 24px 0;
 }
 
-
 /* Brand */
 
 .brand {
-
     display: flex;
     align-items: center;
     gap: 13px;
 }
 
 .brand-cat {
-
     width: 48px;
     height: 48px;
 
@@ -171,7 +159,6 @@ a {
 }
 
 .brand:hover .brand-cat {
-
     transform:
         rotate(4deg)
         translateY(-2px);
@@ -180,7 +167,6 @@ a {
 }
 
 .brand-name {
-
     display: block;
 
     font-family: "Quicksand", sans-serif;
@@ -192,7 +178,6 @@ a {
 }
 
 .brand-subtitle {
-
     display: block;
 
     margin-top: 1px;
@@ -203,11 +188,9 @@ a {
     font-weight: 500;
 }
 
-
 /* Header date */
 
 .header-date {
-
     display: flex;
     align-items: center;
     gap: 8px;
@@ -222,22 +205,19 @@ a {
     font-size: 15px;
 }
 
-
 /* =========================================================
-   5. DASHBOARD
-   ========================================================= */
+5. DASHBOARD
+========================================================= */
 
 .dashboard {
     padding: 10px 0 60px;
 }
 
-
 /* =========================================================
-   6. HERO
-   ========================================================= */
+6. HERO
+========================================================= */
 
 .hero-card {
-
     position: relative;
 
     min-height: 275px;
@@ -267,11 +247,9 @@ a {
     isolation: isolate;
 }
 
-
 /* Texture */
 
 .hero-card::before {
-
     content: "";
 
     position: absolute;
@@ -292,7 +270,6 @@ a {
     z-index: -1;
 }
 
-
 /* Hero content */
 
 .hero-content {
@@ -301,7 +278,6 @@ a {
 }
 
 .hero-label {
-
     display: flex;
     align-items: center;
     gap: 8px;
@@ -322,7 +298,6 @@ a {
 }
 
 .hero-card h1 {
-
     font-family: "Quicksand", sans-serif;
 
     color: var(--brown-900);
@@ -337,7 +312,6 @@ a {
 }
 
 .hero-message {
-
     max-width: 430px;
 
     margin-top: 18px;
@@ -348,13 +322,11 @@ a {
     line-height: 1.7;
 }
 
-
 /* =========================================================
-   HERO CAT
-   ========================================================= */
+HERO CAT
+========================================================= */
 
 .hero-cat {
-
     position: relative;
 
     width: 210px;
@@ -369,11 +341,9 @@ a {
     animation: floatingCat 4s ease-in-out infinite;
 }
 
-
 /* Cat face */
 
 .cat-face {
-
     position: relative;
 
     width: 145px;
@@ -393,11 +363,9 @@ a {
     z-index: 2;
 }
 
-
 /* Ears */
 
 .cat-ear {
-
     position: absolute;
 
     width: 68px;
@@ -409,7 +377,6 @@ a {
 }
 
 .left-ear {
-
     top: 13px;
     left: 20px;
 
@@ -421,7 +388,6 @@ a {
 }
 
 .right-ear {
-
     top: 13px;
     right: 20px;
 
@@ -432,12 +398,10 @@ a {
     border-radius: 60px 8px 10px 10px;
 }
 
-
 /* Ear inner */
 
 .left-ear::after,
 .right-ear::after {
-
     content: "";
 
     position: absolute;
@@ -451,7 +415,6 @@ a {
 }
 
 .left-ear::after {
-
     top: 12px;
     left: 13px;
 
@@ -463,7 +426,6 @@ a {
 }
 
 .right-ear::after {
-
     top: 12px;
     right: 13px;
 
@@ -474,11 +436,9 @@ a {
         8px;
 }
 
-
 /* Eyes */
 
 .cat-eye {
-
     position: absolute;
 
     top: 48px;
@@ -499,11 +459,9 @@ a {
     right: 38px;
 }
 
-
 /* Nose */
 
 .cat-nose {
-
     position: absolute;
 
     left: 50%;
@@ -519,11 +477,9 @@ a {
     transform: translateX(-50%);
 }
 
-
 /* Mouth */
 
 .cat-mouth {
-
     position: absolute;
 
     left: 50%;
@@ -540,12 +496,10 @@ a {
     transform: translateX(-50%);
 }
 
-
 /* Whiskers */
 
 .cat-face::before,
 .cat-face::after {
-
     content: "";
 
     position: absolute;
@@ -559,7 +513,6 @@ a {
 }
 
 .cat-face::before {
-
     right: 128px;
 
     box-shadow:
@@ -568,7 +521,6 @@ a {
 }
 
 .cat-face::after {
-
     left: 128px;
 
     box-shadow:
@@ -576,11 +528,9 @@ a {
         0 -9px rgba(63,48,41,0.3);
 }
 
-
 /* Decorations */
 
 .hero-decoration {
-
     position: absolute;
 
     color: rgba(112, 88, 76, 0.35);
@@ -589,7 +539,6 @@ a {
 }
 
 .decoration-one {
-
     top: 30px;
     left: 48%;
 
@@ -597,7 +546,6 @@ a {
 }
 
 .decoration-two {
-
     right: 42%;
     bottom: 30px;
 
@@ -605,24 +553,21 @@ a {
 }
 
 .decoration-three {
-
     right: 34px;
     top: 35px;
 
     font-size: 15px;
 }
 
-
 /* =========================================================
-   7. CATEGORY CARDS
-   ========================================================= */
+7. CATEGORY CARDS (UPDATED FOR 5 CARDS)
+========================================================= */
 
 .category-grid {
-
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    /* 6-column grid to enable a perfect 3-and-2 arrangement */
+    grid-template-columns: repeat(6, 1fr);
 
     gap: 16px;
 
@@ -630,6 +575,8 @@ a {
 }
 
 .category-card {
+    /* Row 1: Each card spans 2 of the 6 columns (3 cards fit per row) */
+    grid-column: span 2;
 
     min-height: 150px;
 
@@ -648,13 +595,17 @@ a {
         box-shadow 0.25s ease;
 }
 
-.category-card:hover {
+/* Row 2: These two cards each span 3 columns, balancing the row */
+.shopping-card,
+.other-card {
+    grid-column: span 3;
+}
 
+.category-card:hover {
     transform: translateY(-4px);
 
     box-shadow: var(--shadow);
 }
-
 
 /* Category variations */
 
@@ -674,11 +625,9 @@ a {
     background: linear-gradient(145deg, #fff, #f2f5f5);
 }
 
-
 /* Category header */
 
 .category-top {
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -687,7 +636,6 @@ a {
 }
 
 .category-icon {
-
     width: 38px;
     height: 38px;
 
@@ -714,7 +662,6 @@ a {
 }
 
 .category-name {
-
     color: var(--brown-500);
 
     font-size: 12px;
@@ -726,7 +673,6 @@ a {
 }
 
 .category-card strong {
-
     display: block;
 
     color: var(--brown-900);
@@ -737,11 +683,9 @@ a {
     font-weight: 700;
 }
 
-
 /* Progress */
 
 .category-progress {
-
     width: 100%;
     height: 5px;
 
@@ -755,7 +699,6 @@ a {
 }
 
 .category-progress span {
-
     display: block;
 
     height: 100%;
@@ -779,13 +722,11 @@ a {
     background: var(--brown-500);
 }
 
-
 /* =========================================================
-   8. CONTENT GRID
-   ========================================================= */
+8. CONTENT GRID
+========================================================= */
 
 .content-grid {
-
     display: grid;
 
     grid-template-columns:
@@ -797,14 +738,12 @@ a {
     margin-top: 18px;
 }
 
-
 /* =========================================================
-   9. SHARED CARD
-   ========================================================= */
+9. SHARED CARD
+========================================================= */
 
 .expense-form-card,
 .transactions-card {
-
     background: var(--surface);
 
     border: 1px solid var(--border);
@@ -814,21 +753,17 @@ a {
     box-shadow: var(--shadow-sm);
 }
 
-
 /* =========================================================
-   10. FORM CARD
-   ========================================================= */
+10. FORM CARD
+========================================================= */
 
 .expense-form-card {
-
     padding: 30px;
 }
-
 
 /* Heading */
 
 .section-heading {
-
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -837,7 +772,6 @@ a {
 }
 
 .eyebrow {
-
     display: block;
 
     margin-bottom: 6px;
@@ -853,7 +787,6 @@ a {
 
 .section-heading h2,
 .transactions-header h2 {
-
     font-family: "Quicksand", sans-serif;
 
     font-size: 24px;
@@ -868,7 +801,6 @@ a {
 }
 
 .section-heading p {
-
     margin-top: 7px;
 
     color: var(--brown-500);
@@ -877,7 +809,6 @@ a {
 }
 
 .mini-cat {
-
     width: 43px;
     height: 43px;
 
@@ -893,17 +824,15 @@ a {
     transform: rotate(5deg);
 }
 
-
 /* =========================================================
-   11. FORM
-   ========================================================= */
+11. FORM
+========================================================= */
 
 .form-group {
     margin-bottom: 20px;
 }
 
 .form-group label {
-
     display: block;
 
     margin-bottom: 8px;
@@ -914,11 +843,9 @@ a {
     font-weight: 700;
 }
 
-
 /* Input wrapper */
 
 .input-wrapper {
-
     position: relative;
 
     display: flex;
@@ -939,7 +866,6 @@ a {
 }
 
 .input-wrapper:focus-within {
-
     background: #fff;
 
     border-color: var(--brown-500);
@@ -950,7 +876,6 @@ a {
 
 .input-wrapper input,
 .input-wrapper select {
-
     width: 100%;
 
     height: 50px;
@@ -972,11 +897,9 @@ a {
     color: #b8aaa0;
 }
 
-
 /* Input icon */
 
 .input-icon {
-
     flex: 0 0 auto;
 
     margin-left: 15px;
@@ -984,11 +907,9 @@ a {
     font-size: 15px;
 }
 
-
 /* Currency */
 
 .currency-symbol {
-
     flex: 0 0 auto;
 
     margin-left: 15px;
@@ -1005,7 +926,6 @@ a {
     padding-left: 8px;
 }
 
-
 /* Select */
 
 .select-wrapper {
@@ -1013,7 +933,6 @@ a {
 }
 
 .select-wrapper select {
-
     appearance: none;
 
     cursor: pointer;
@@ -1023,7 +942,6 @@ a {
 }
 
 .select-arrow {
-
     position: absolute;
 
     right: 16px;
@@ -1035,13 +953,11 @@ a {
     font-size: 18px;
 }
 
-
 /* =========================================================
-   12. ADD BUTTON
-   ========================================================= */
+12. ADD BUTTON
+========================================================= */
 
 .add-expense-btn {
-
     position: relative;
 
     width: 100%;
@@ -1075,7 +991,6 @@ a {
 }
 
 .add-expense-btn:hover {
-
     background: var(--brown-900);
 
     transform: translateY(-2px);
@@ -1093,7 +1008,6 @@ a {
 }
 
 .btn-arrow {
-
     position: absolute;
 
     right: 17px;
@@ -1107,11 +1021,9 @@ a {
     transform: translateX(3px);
 }
 
-
 /* Form tip */
 
 .form-tip {
-
     display: flex;
     align-items: center;
     gap: 7px;
@@ -1127,10 +1039,9 @@ a {
     line-height: 1.5;
 }
 
-
 /* =========================================================
-   13. TRANSACTIONS
-   ========================================================= */
+13. TRANSACTIONS
+========================================================= */
 
 .transactions-card {
     min-width: 0;
@@ -1138,11 +1049,9 @@ a {
     padding: 30px;
 }
 
-
 /* Header */
 
 .transactions-header {
-
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -1152,11 +1061,9 @@ a {
     margin-bottom: 25px;
 }
 
-
 /* Filter */
 
 .filter-wrapper {
-
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1165,7 +1072,6 @@ a {
 }
 
 .filter-wrapper > label {
-
     color: var(--brown-500);
 
     font-size: 11px;
@@ -1173,7 +1079,6 @@ a {
 }
 
 .filter-select {
-
     position: relative;
 
     min-width: 145px;
@@ -1183,7 +1088,6 @@ a {
 }
 
 .filter-select select {
-
     width: 100%;
 
     height: 38px;
@@ -1210,7 +1114,6 @@ a {
 }
 
 .filter-select > span {
-
     position: absolute;
 
     right: 11px;
@@ -1220,22 +1123,19 @@ a {
     pointer-events: none;
 }
 
-
 /* =========================================================
-   14. EXPENSE LIST
-   ========================================================= */
+14. EXPENSE LIST
+========================================================= */
 
 .expense-list {
     min-height: 250px;
 }
 
-
 /* =========================================================
-   15. EXPENSE ITEM
-   ========================================================= */
+15. EXPENSE ITEM
+========================================================= */
 
 .expense-item {
-
     display: flex;
     align-items: center;
 
@@ -1256,11 +1156,9 @@ a {
     border-bottom: 0;
 }
 
-
 /* Expense icon */
 
 .expense-icon {
-
     width: 45px;
     height: 45px;
 
@@ -1294,7 +1192,6 @@ a {
     background: var(--blue-soft);
 }
 
-
 /* Expense info */
 
 .expense-info {
@@ -1303,7 +1200,6 @@ a {
 }
 
 .expense-info h3 {
-
     overflow: hidden;
 
     margin-bottom: 3px;
@@ -1318,7 +1214,6 @@ a {
 }
 
 .expense-category {
-
     display: inline-flex;
 
     padding: 3px 7px;
@@ -1337,11 +1232,9 @@ a {
     letter-spacing: 0.5px;
 }
 
-
 /* Amount */
 
 .expense-amount {
-
     color: var(--brown-800);
 
     font-family: "Quicksand", sans-serif;
@@ -1352,11 +1245,9 @@ a {
     white-space: nowrap;
 }
 
-
 /* Actions */
 
 .expense-actions {
-
     display: flex;
     gap: 5px;
 
@@ -1364,7 +1255,6 @@ a {
 }
 
 .expense-actions button {
-
     width: 32px;
     height: 32px;
 
@@ -1394,26 +1284,22 @@ a {
 }
 
 .edit-btn:hover {
-
     color: var(--brown-800);
 
     background: var(--cream);
 }
 
 .delete-btn:hover {
-
     color: var(--danger);
 
     background: var(--danger-soft);
 }
 
-
 /* =========================================================
-   16. EMPTY STATE
-   ========================================================= */
+16. EMPTY STATE
+========================================================= */
 
 .empty-state {
-
     min-height: 260px;
 
     display: flex;
@@ -1426,11 +1312,9 @@ a {
     padding: 20px;
 }
 
-
 /* Empty cat */
 
 .empty-cat {
-
     position: relative;
 
     width: 90px;
@@ -1440,7 +1324,6 @@ a {
 }
 
 .empty-cat-face {
-
     position: absolute;
 
     bottom: 0;
@@ -1455,7 +1338,6 @@ a {
 }
 
 .empty-cat-ears span {
-
     position: absolute;
 
     top: 4px;
@@ -1469,7 +1351,6 @@ a {
 }
 
 .empty-cat-ears span:first-child {
-
     left: 10px;
 
     transform: rotate(30deg);
@@ -1478,7 +1359,6 @@ a {
 }
 
 .empty-cat-ears span:last-child {
-
     right: 10px;
 
     transform: rotate(-30deg);
@@ -1487,7 +1367,6 @@ a {
 }
 
 .empty-cat-face i {
-
     position: absolute;
 
     top: 24px;
@@ -1509,7 +1388,6 @@ a {
 }
 
 .empty-cat-face b {
-
     position: absolute;
 
     left: 50%;
@@ -1525,11 +1403,9 @@ a {
     transform: translateX(-50%);
 }
 
-
 /* Empty text */
 
 .empty-state h3 {
-
     font-family: "Quicksand", sans-serif;
 
     font-size: 17px;
@@ -1537,7 +1413,6 @@ a {
 }
 
 .empty-state p {
-
     max-width: 260px;
 
     margin-top: 6px;
@@ -1549,7 +1424,6 @@ a {
 }
 
 .empty-paws {
-
     margin-top: 13px;
 
     color: var(--brown-400);
@@ -1559,13 +1433,11 @@ a {
     font-size: 12px;
 }
 
-
 /* =========================================================
-   17. TRANSACTION FOOTER
-   ========================================================= */
+17. TRANSACTION FOOTER
+========================================================= */
 
 .transactions-footer {
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1585,13 +1457,11 @@ a {
     opacity: 0.8;
 }
 
-
 /* =========================================================
-   18. BOTTOM NOTE
-   ========================================================= */
+18. BOTTOM NOTE
+========================================================= */
 
 .bottom-note {
-
     position: relative;
 
     display: flex;
@@ -1614,7 +1484,6 @@ a {
 }
 
 .note-cat {
-
     width: 45px;
     height: 45px;
 
@@ -1631,7 +1500,6 @@ a {
 }
 
 .bottom-note strong {
-
     display: block;
 
     color: var(--brown-800);
@@ -1642,7 +1510,6 @@ a {
 }
 
 .bottom-note p {
-
     margin-top: 3px;
 
     color: var(--brown-600);
@@ -1651,7 +1518,6 @@ a {
 }
 
 .note-heart {
-
     margin-left: auto;
 
     color: var(--pink);
@@ -1659,13 +1525,11 @@ a {
     font-size: 25px;
 }
 
-
 /* =========================================================
-   19. FOOTER
-   ========================================================= */
+19. FOOTER
+========================================================= */
 
 .footer {
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1681,13 +1545,11 @@ a {
     display: none;
 }
 
-
 /* =========================================================
-   20. ANIMATIONS
-   ========================================================= */
+20. ANIMATIONS
+========================================================= */
 
 @keyframes floatingCat {
-
     0%,
     100% {
         transform: translateY(0) rotate(0deg);
@@ -1696,12 +1558,9 @@ a {
     50% {
         transform: translateY(-7px) rotate(1deg);
     }
-
 }
 
-
 @keyframes expenseIn {
-
     from {
         opacity: 0;
         transform: translateY(8px);
@@ -1711,13 +1570,11 @@ a {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
-
 /* =========================================================
-   21. RESPONSIVE — TABLET
-   ========================================================= */
+21. RESPONSIVE — TABLET
+========================================================= */
 
 @media (max-width: 1050px) {
 
@@ -1733,21 +1590,28 @@ a {
         margin-right: 20px;
     }
 
+    /* Tablet: 2 columns, 5th card spans full width to stay balanced */
     .category-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-card,
+    .shopping-card {
+        grid-column: span 1;
+    }
+
+    .other-card {
+        grid-column: span 2;
     }
 
     .content-grid {
         grid-template-columns: 1fr;
     }
-
 }
 
-
 /* =========================================================
-   22. RESPONSIVE — MOBILE
-   ========================================================= */
+22. RESPONSIVE — MOBILE
+========================================================= */
 
 @media (max-width: 650px) {
 
@@ -1778,7 +1642,6 @@ a {
     /* Hero */
 
     .hero-card {
-
         min-height: 270px;
 
         padding: 32px 25px;
@@ -1787,21 +1650,18 @@ a {
     }
 
     .hero-card h1 {
-
         font-size: 45px;
 
         letter-spacing: -2px;
     }
 
     .hero-message {
-
         max-width: 250px;
 
         font-size: 12px;
     }
 
     .hero-cat {
-
         position: absolute;
 
         right: -45px;
@@ -1820,17 +1680,22 @@ a {
     /* Categories */
 
     .category-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
 
         gap: 10px;
     }
 
-    .category-card {
+    .category-card,
+    .shopping-card {
+        grid-column: span 1;
 
         min-height: 135px;
 
         padding: 17px;
+    }
+
+    .other-card {
+        grid-column: span 2;
     }
 
     .category-top {
@@ -1879,7 +1744,6 @@ a {
     }
 
     .expense-icon {
-
         width: 39px;
         height: 39px;
 
@@ -1901,7 +1765,6 @@ a {
     }
 
     .expense-actions button {
-
         width: 29px;
         height: 29px;
 
@@ -1924,20 +1787,17 @@ a {
     /* Footer */
 
     .footer {
-
         flex-direction: column;
 
         gap: 7px;
 
         text-align: center;
     }
-
 }
 
-
 /* =========================================================
-   23. VERY SMALL SCREENS
-   ========================================================= */
+23. VERY SMALL SCREENS
+========================================================= */
 
 @media (max-width: 400px) {
 
@@ -1965,5 +1825,4 @@ a {
     .expense-actions {
         display: none;
     }
-
 }
