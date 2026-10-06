@@ -14,13 +14,12 @@ const DOM =
     expenseForm       : document.getElementById('expense-form'),
     emptyState        : document.querySelector ('.empty-state'),
     expenseList       : document.querySelector ('.expense-list'),
-    editBtn           : document.querySelector ('.edit-btn'),
     totalExpense      : document.getElementById('total-expenses'),
     foodTotal         : document.getElementById('food-total'),
     transportTotal    : document.getElementById('transport-total'),
     shoppingTotal     : document.getElementById('shopping-total'),
     entertainmentTotal: document.getElementById('entertainment-total'),
-    otherTotal        : document.getElementById('other-total')
+    otherTotal        : document.getElementById('other-total'),
 };
 
 
@@ -70,7 +69,7 @@ const categoryIcon = (category) => ICONS[category]
 const expenseToHTML = function(expense)
 {
     return `
-        <article class="expense-item" data-id"${expense.id}">
+        <article class="expense-item" data-id="${expense.id}">
             <div class="expense-icon">${categoryIcon(expense.category)}</div>
 
             <div class="expense-info">
@@ -136,6 +135,8 @@ DOM.expenseForm.addEventListener('submit', function(e)
         category    : DOM.category.value
     };
 
+    
+    // adds current expense to expenseItems array
     expenseItems.push(expense);
 
     // calculateTotalExpense(expense.amount);
@@ -161,7 +162,8 @@ DOM.expenseForm.addEventListener('submit', function(e)
 
     renderExpense();
 
-    console.log(totalExpenses);
+    DOM.editBtn   = document.querySelector('edit-btn');
+    DOM.deleteBtn = document.querySelector('delete-btn');
      
 });
 
@@ -170,11 +172,27 @@ DOM.expenseForm.addEventListener('submit', function(e)
 // ==================== EDIT BUTTON EVENT LISTENER ==================== //
 
 
-/*
-DOM.editBtn.addEventListener('click', function()
+
+DOM.expenseList.addEventListener('click', function(e)
 {
 
-    console.log("working?");
+    console.log(e.target);
+
+    if (e.target.classList.contains('edit-btn'))
+    {
+        const id = Number(e.target.dataset.id);
+
+        let expense = expenseItems.find(item => item.id === id);
+        
+        return;
+    };
+
+    if (e.target.classList.contains('delete-btn'))
+    {
+        const id = e.target.dataset.id;
+        console.log(`delete clicked for the item id: ${id}`);
+    
+        return;
+    };
 
 });
-*/
