@@ -1,3 +1,4 @@
+
 /* =========================================================
 COZYPAWS EXPENSE TRACKER
 ========================================================= */
@@ -1128,7 +1129,37 @@ HERO CAT
 ========================================================= */
 
 .expense-list {
-    min-height: 250px;
+    height: clamp(300px, 46vh, 440px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 6px;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--cream-dark) transparent;
+}
+
+.expense-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.expense-list::-webkit-scrollbar-track {
+    margin: 4px 0;
+    background: transparent;
+}
+
+.expense-list::-webkit-scrollbar-thumb {
+    background: var(--cream-dark);
+    border: 2px solid var(--surface);
+    background-clip: padding-box;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+}
+
+.expense-list::-webkit-scrollbar-thumb:hover {
+    background: var(--brown-500);
+    background-clip: padding-box;
 }
 
 /* =========================================================
@@ -1438,6 +1469,12 @@ HERO CAT
 ========================================================= */
 
 .transactions-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background: var(--surface);
+    padding-bottom: 2px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1607,6 +1644,10 @@ HERO CAT
     .content-grid {
         grid-template-columns: 1fr;
     }
+
+    .expense-list {
+        height: clamp(300px, 52vh, 460px);
+    }
 }
 
 /* =========================================================
@@ -1738,6 +1779,11 @@ HERO CAT
 
 
     /* Expense */
+
+    .expense-list {
+        height: clamp(280px, 58vh, 420px);
+        padding-right: 4px;
+    }
 
     .expense-item {
         gap: 9px;
