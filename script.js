@@ -160,7 +160,6 @@ DOM.expenseForm.addEventListener('submit', function(e)
     DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
 
     renderExpense();
-
      
 });
 
@@ -173,15 +172,21 @@ DOM.expenseForm.addEventListener('submit', function(e)
 DOM.expenseList.addEventListener('click', function(e)
 {
 
-    console.log(e.target);
-
     if (e.target.classList.contains('edit-btn'))
-    {
+    {          
+
         const id = Number(e.target.dataset.id);
 
         let expense = expenseItems.find(item => item.id === id);
 
-        console.log(expense);
+        console.log("Object before edit", {...expense});
+        
+        let updateDescription = prompt("Please enter new description: ");
+
+        expense.description = updateDescription 
+
+        console.log(`Edit clicked for the item id ${id}`);
+        console.log("Object after edit", {...expense});
         
         return;
     };
@@ -189,9 +194,8 @@ DOM.expenseList.addEventListener('click', function(e)
     if (e.target.classList.contains('delete-btn'))
     {
         const id = e.target.dataset.id;
-        console.log(`delete clicked for the item id: ${id}`);
+        console.log(`Delete clicked for the item id: ${id}`);
     
         return;
     };
-
 });
