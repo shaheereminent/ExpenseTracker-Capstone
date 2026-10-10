@@ -160,18 +160,21 @@ DOM.expenseForm.addEventListener('submit', function(e)
     DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
 
     renderExpense();
-     
+
+    console.log("Before Delete", {...expenseItems});
+
 });
 
 
 
-// ==================== EDIT BUTTON EVENT LISTENER ==================== //
+// ====================  EDIT & DELETE BUTTON EVENT LISTENER ==================== //
 
 
 
 DOM.expenseList.addEventListener('click', function(e)
 {
 
+    // edit button
     if (e.target.classList.contains('edit-btn'))
     {          
 
@@ -181,20 +184,50 @@ DOM.expenseList.addEventListener('click', function(e)
 
         console.log("Object before edit", {...expense});
         
+        // update description 
         let updateDescription = prompt("Please enter new description: ");
 
-        expense.description = updateDescription 
+        if (updateDescription !== "")
+        {
+            expense.description = updateDescription
+        }
+        else
+        {
+            updateDescription = prompt("Description cannot be empty, please write it: ");
+        }
 
+        // update amount
+        let updateAmount = Number(prompt("Please write the amount in digit: "));
+
+        if (Number.isFinite(Number(updateAmount)) && updateAmount !== "")
+        {
+            expense.amount = updateAmount;
+        }
+        
+        // update category
+        let updateCategory = prompt("Please select the category (Food, Transport, Entertainment, Shopping, Other): ");
+
+        if (updateCategory !== expense.category)
+        {
+            expense.category = updateCategory
+        }
+
+
+        console.log(expenseItems);
         console.log(`Edit clicked for the item id ${id}`);
         console.log("Object after edit", {...expense});
         
         return;
     };
 
+    // delete button 
     if (e.target.classList.contains('delete-btn'))
     {
-        const id = e.target.dataset.id;
+        const id = Number(e.target.dataset.id);
         console.log(`Delete clicked for the item id: ${id}`);
+        let expenseIndex = expenseItems.findIndex(item => item.id === id)
+        expenseItems.splice(expenseIndex, 1);
+        console.log("After delete", {...expenseItems});
     
         return;
     };
