@@ -184,33 +184,47 @@ DOM.expenseList.addEventListener('click', function(e)
 
         console.log("Object before edit", {...expense});
         
-        // update description 
+        // update description
         let updateDescription = prompt("Please enter new description: ");
 
-        if (updateDescription !== "")
-        {
-            expense.description = updateDescription
-        }
-        else
+        while (!updateDescription)
         {
             updateDescription = prompt("Description cannot be empty, please write it: ");
         }
 
+        expense.description = updateDescription
+
         // update amount
         let updateAmount = Number(prompt("Please write the amount in digit: "));
 
-        if (Number.isFinite(Number(updateAmount)) && updateAmount !== "")
+        while (!updateAmount)
         {
-            expense.amount = updateAmount;
-        }
+            updateAmount = Number(prompt("Amount cannot be empty or 0, Please enter correct Amount: "));
+        };
+
+        expense.amount = updateAmount;
+
         
         // update category
         let updateCategory = prompt("Please select the category (Food, Transport, Entertainment, Shopping, Other): ");
 
-        if (updateCategory !== expense.category)
+        while
+        (!(
+            updateCategory === "Food" ||
+            updateCategory === "Transport" ||
+            updateCategory === "Entertainment" ||
+            updateCategory === "Shopping" ||
+            updateCategory === "Other"
+        ))
         {
-            expense.category = updateCategory
+            updateCategory = prompt("Please only write either Food, Transport, Entertainment, Shopping or Other");
         }
+
+        expense.category = updateCategory
+        //if (updateCategory !== expense.category)
+        //{
+          //  expense.category = updateCategory
+       // }
 
 
         console.log(expenseItems);
