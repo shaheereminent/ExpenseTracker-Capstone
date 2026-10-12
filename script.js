@@ -41,12 +41,17 @@ const expenseItems = [];
 // declaring & storing total score of each category
 const totalExpenses =
 {
-    total              : 0,
+    Total              : 0,
     FoodTotal          : 0,
     TransportTotal     : 0,
     EntertainmentTotal : 0,
     ShoppingTotal      : 0,
-    OtherTotal         : 0
+    OtherTotal         : 0,
+
+    calculateTotal     :function(n1, n2, n3, n4, n5)
+    {
+        return this.Total = n1 + n2 + n3 + n4 + n5;
+    }
 };
 
 
@@ -139,20 +144,27 @@ DOM.expenseForm.addEventListener('submit', function(e)
     // adds current expense to expenseItems array
     expenseItems.push(expense);
 
-    // calculateTotalExpense(expense.amount);
-
-    totalExpenses.total += expense.amount;
-
     // add total based on category
     totalExpenses[`${expense.category}Total`] += expense.amount;
-    
+
+    // calculate total amount
+    totalExpenses.calculateTotal
+    (
+        totalExpenses.FoodTotal,
+        totalExpenses.TransportTotal,
+        totalExpenses.EntertainmentTotal,
+        totalExpenses.ShoppingTotal,
+        totalExpenses.OtherTotal
+    );
+    // totalExpenses.total += expense.amount;
+ 
     // resetting values upon submit because user can directly start adding another expense rather than removing each input value themselves
     DOM.description.value = "";
     DOM.amount.value      = "";
     DOM.category.value    = "Food";
 
     // render total spent values for each category and for overall total
-    DOM.totalExpense.textContent       = `$${totalExpenses.total}`; 
+    DOM.totalExpense.textContent       = `$${totalExpenses.Total}`; 
     DOM.foodTotal.textContent          = `$${totalExpenses.FoodTotal}`;
     DOM.transportTotal.textContent     = `$${totalExpenses.TransportTotal}`;
     DOM.entertainmentTotal.textContent = `$${totalExpenses.EntertainmentTotal}`;
@@ -162,6 +174,8 @@ DOM.expenseForm.addEventListener('submit', function(e)
     renderExpense();
 
     console.log("Before Delete", {...expenseItems});
+
+    console.log("Total Expense before edit:", {...totalExpenses})
 
 });
 
@@ -192,17 +206,25 @@ DOM.expenseList.addEventListener('click', function(e)
             updateDescription = prompt("Description cannot be empty, please write it: ");
         }
 
+        
         expense.description = updateDescription
+
 
         // update amount
         let updateAmount = Number(prompt("Please write the amount in digit: "));
+
 
         while (!updateAmount)
         {
             updateAmount = Number(prompt("Amount cannot be empty or 0, Please enter correct Amount: "));
         };
 
-        expense.amount = updateAmount;
+
+        if (expense.amount !== updateAmount)
+        {
+            totalExpenses[`${expense.category}Total`] -= expense.amount
+            expense.amount = updateAmount;
+        }
 
         
         // update category
@@ -220,29 +242,65 @@ DOM.expenseList.addEventListener('click', function(e)
             updateCategory = prompt("Please only write either Food, Transport, Entertainment, Shopping or Other");
         }
 
-        expense.category = updateCategory
-        //if (updateCategory !== expense.category)
-        //{
-          //  expense.category = updateCategory
-       // }
 
-
-        console.log(expenseItems);
-        console.log(`Edit clicked for the item id ${id}`);
-        console.log("Object after edit", {...expense});
+        if (updateCategory !== expense.category)
+        {
+            expense.category = updateCategory
+            totalExpenses[`${expense.category}Total`] += expense.amount;
+            totalExpenses.calculateTotal
+            (
+                totalExpenses.FoodTotal,
+                totalExpenses.TransportTotal,
+                totalExpenses.EntertainmentTotal,
+                totalExpenses.ShoppingTotal,
+                totalExpenses.OtherTotal
+            );
+        }
         
+
+        renderExpense();
+
+        console.log({...expenseItems})
+        console.log({...totalExpenses})
+
+
         return;
     };
+
 
     // delete button 
     if (e.target.classList.contains('delete-btn'))
     {
+        // get current id because with this i can get the clicked item
         const id = Number(e.target.dataset.id);
-        console.log(`Delete clicked for the item id: ${id}`);
-        let expenseIndex = expenseItems.findIndex(item => item.id === id)
-        expenseItems.splice(expenseIndex, 1);
-        console.log("After delete", {...expenseItems});
-    
+
+
+        // finding the index because we need to get the object for the current index
+        let index = expenseItems.findIndex(item => item.id === id);
+
+
+        // find the actual object because we need to manipulate totalExpenses based on deleted item
+        let expense = expenseItems.find(item => item.id === id);
+
+
+        console.log(expense);
+
+
+        // deducting amount because amount needs to updated when an item is deleted
+        totalExpenses[`${expense.category}Total`] -= expense.amount;
+        totalExpenses.calculateTotal
+        (
+            totalExpenses.FoodTotal,
+            totalExpenses.TransportTotal,
+            totalExpenses.EntertainmentTotal,
+            totalExpenses.ShoppingTotal,
+            totalExpenses.OtherTotal
+        );
+
+
+        // removing the selected item
+        expenseItems.splice(expense, 1);
+
         return;
     };
 });
