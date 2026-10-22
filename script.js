@@ -71,6 +71,14 @@ const categoryIcon = (category) => ICONS[category]
 
 
 
+// show alert function
+const showAlert = function()
+{
+	console.log("It' working");
+}
+
+
+
 const expenseToHTML = function(expense)
 {
     return `
@@ -92,6 +100,18 @@ const expenseToHTML = function(expense)
         </article>
     `;
 };
+
+
+
+const renderSpentValues = function()
+{
+	DOM.totalExpense.textContent       = `$${totalExpenses.Total}`; 
+	DOM.foodTotal.textContent          = `$${totalExpenses.FoodTotal}`;
+	DOM.transportTotal.textContent     = `$${totalExpenses.TransportTotal}`;
+	DOM.entertainmentTotal.textContent = `$${totalExpenses.EntertainmentTotal}`;
+	DOM.shoppingTotal.textContent      = `$${totalExpenses.ShoppingTotal}`;
+	DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
+}
 
 
 
@@ -156,21 +176,15 @@ DOM.expenseForm.addEventListener('submit', function(e)
         totalExpenses.ShoppingTotal,
         totalExpenses.OtherTotal
     );
-    // totalExpenses.total += expense.amount;
- 
+
     // resetting values upon submit because user can directly start adding another expense rather than removing each input value themselves
     DOM.description.value = "";
     DOM.amount.value      = "";
     DOM.category.value    = "Food";
 
     // render total spent values for each category and for overall total
-    DOM.totalExpense.textContent       = `$${totalExpenses.Total}`; 
-    DOM.foodTotal.textContent          = `$${totalExpenses.FoodTotal}`;
-    DOM.transportTotal.textContent     = `$${totalExpenses.TransportTotal}`;
-    DOM.entertainmentTotal.textContent = `$${totalExpenses.EntertainmentTotal}`;
-    DOM.shoppingTotal.textContent      = `$${totalExpenses.ShoppingTotal}`;
-    DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
 
+	renderSpentValues();
     renderExpense();
 
     console.log("Before Delete", {...expenseItems});
@@ -209,23 +223,6 @@ DOM.expenseList.addEventListener('click', function(e)
         
         expense.description = updateDescription
 
-
-        // update amount
-        let updateAmount = Number(prompt("Please write the amount in digit: "));
-
-
-        while (!updateAmount)
-        {
-            updateAmount = Number(prompt("Amount cannot be empty or 0, Please enter correct Amount: "));
-        };
-
-
-        if (expense.amount !== updateAmount)
-        {
-            totalExpenses[`${expense.category}Total`] -= expense.amount
-            expense.amount = updateAmount;
-        }
-
         
         // update category
         let updateCategory = prompt("Please select the category (Food, Transport, Entertainment, Shopping, Other): ");
@@ -243,21 +240,43 @@ DOM.expenseList.addEventListener('click', function(e)
         }
 
 
-        if (updateCategory !== expense.category)
-        {
-            expense.category = updateCategory
-            totalExpenses[`${expense.category}Total`] += expense.amount;
-            totalExpenses.calculateTotal
-            (
-                totalExpenses.FoodTotal,
-                totalExpenses.TransportTotal,
-                totalExpenses.EntertainmentTotal,
-                totalExpenses.ShoppingTotal,
-                totalExpenses.OtherTotal
-            );
-        }
-        
+		// removing the amount from current expense category
+		if (totalExpenses[`${expense.category}Total`] - expense.amount < 0)
+		{
+			totalExpenses[`${expense.category}Total`] = 0;
+		}
+		else
+		{
+			totalExpenses[`${expense.category}Total`] -= expense.amount;
+		}
 
+		// updating the category to newly updated category
+        expense.category = updateCategory
+
+        
+        // update amount
+        let updateAmount = Number(prompt("Please write the amount in digit: "));
+
+
+        while (!updateAmount)
+        {
+            updateAmount = Number(prompt("Amount cannot be empty or 0, Please enter correct Amount: "));
+        };
+
+		totalExpenses[`${expense.category}Total`] += updateAmount;
+		totalExpenses.calculateTotal
+		(
+			totalExpenses.FoodTotal,
+			totalExpenses.TransportTotal,
+			totalExpenses.EntertainmentTotal,
+			totalExpenses.ShoppingTotal,
+			totalExpenses.OtherTotal
+		);
+
+		expense.amount = updateAmount;
+
+
+		renderSpentValues();
         renderExpense();
 
         console.log({...expenseItems})
@@ -283,9 +302,6 @@ DOM.expenseList.addEventListener('click', function(e)
         let expense = expenseItems.find(item => item.id === id);
 
 
-        console.log(expense);
-
-
         // deducting amount because amount needs to updated when an item is deleted
         totalExpenses[`${expense.category}Total`] -= expense.amount;
         totalExpenses.calculateTotal
@@ -301,6 +317,8 @@ DOM.expenseList.addEventListener('click', function(e)
         // removing the selected item
         expenseItems.splice(expense, 1);
 
+		renderSpentValues();
+        renderExpense();
         return;
     };
 });
