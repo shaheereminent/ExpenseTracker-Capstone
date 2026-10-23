@@ -20,13 +20,12 @@ const DOM =
     shoppingTotal     : document.getElementById('shopping-total'),
     entertainmentTotal: document.getElementById('entertainment-total'),
     otherTotal        : document.getElementById('other-total'),
+    alertPopup        : document.querySelector ('.alert'),
 };
 
 
 
 // ==================== DATA ==================== //
-
-
 
 // id for each object of expense and it will icrement by 1 on each submit because id must be unique
 let nextID = 1;
@@ -68,14 +67,6 @@ const ICONS =
 
 
 const categoryIcon = (category) => ICONS[category]
-
-
-
-// show alert function
-const showAlert = function()
-{
-	console.log("It' working");
-}
 
 
 
@@ -122,12 +113,23 @@ const renderSpentValues = function()
 
 
 	DOM.totalExpense.textContent       = `$${formattedAmount[0]}`; 
-	//DOM.totalExpense.textContent       = `$${totalExpenses.Total}`; 
 	DOM.foodTotal.textContent          = `$${formattedAmount[1]}`;
 	DOM.transportTotal.textContent     = `$${formattedAmount[2]}`;
 	DOM.entertainmentTotal.textContent = `$${formattedAmount[3]}`;
 	DOM.shoppingTotal.textContent      = `$${formattedAmount[4]}`;
 	DOM.otherTotal.textContent         = `$${formattedAmount[5]}`;
+}
+
+
+const showAlert = function(message)
+{
+	DOM.alertPopup.textContent = message;
+	DOM.alertPopup.classList.remove('hidden');
+
+	setTimeout(() =>
+	{
+		DOM.alertPopup.classList.add('hidden');
+	}, 5000)
 }
 
 
@@ -204,10 +206,11 @@ DOM.expenseForm.addEventListener('submit', function(e)
 	renderSpentValues();
     renderExpense();
 
+	showAlert("Expense Item Added ✅");
+
     console.log("Before Delete", {...expenseItems});
 
     console.log("Total Expense before edit:", {...totalExpenses});
-
 
 });
 
@@ -298,6 +301,7 @@ DOM.expenseList.addEventListener('click', function(e)
 
 		renderSpentValues();
         renderExpense();
+		showAlert("Expense Item Updated 📄");
 
         console.log({...expenseItems})
         console.log({...totalExpenses})
@@ -339,6 +343,8 @@ DOM.expenseList.addEventListener('click', function(e)
 
 		renderSpentValues();
         renderExpense();
+
+		showAlert("Expense Item Deleted ❌");
         return;
     };
 });

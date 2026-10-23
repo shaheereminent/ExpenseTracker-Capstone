@@ -1497,6 +1497,33 @@ HERO CAT
     opacity: 0.8;
 }
 
+.alert {
+	position: fixed;
+
+	bottom	: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px 25px;
+
+    overflow: hidden;
+
+    background: #f4eee7;
+
+    border: 1px solid var(--cream-dark);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow-sm);
+
+	z-index: 99;
+}
+
+
 /* =========================================================
 18. BOTTOM NOTE
 ========================================================= */
