@@ -81,8 +81,11 @@ const showAlert = function()
 
 const expenseToHTML = function(expense)
 {
+
+	const formattedAmount = expense.amount.toLocaleString();
+
     return `
-        <article class="expense-item" data-id="${expense.id}">
+		<article class="expense-item" data-id="${expense.id}">
             <div class="expense-icon">${categoryIcon(expense.category)}</div>
 
             <div class="expense-info">
@@ -90,7 +93,7 @@ const expenseToHTML = function(expense)
                 <span class="expense-category">${expense.category}</span>
             </div>
 
-            <div class="expense-amount">$${expense.amount}</div>
+            <div class="expense-amount">$${formattedAmount}</div>
 
             <div class="expense-actions">
                 <button class="edit-btn" data-id="${expense.id}" aria-label="Edit expense">✎</button>
@@ -98,19 +101,33 @@ const expenseToHTML = function(expense)
             </div>
 
         </article>
-    `;
+	`;
 };
 
 
 
 const renderSpentValues = function()
 {
-	DOM.totalExpense.textContent       = `$${totalExpenses.Total}`; 
-	DOM.foodTotal.textContent          = `$${totalExpenses.FoodTotal}`;
-	DOM.transportTotal.textContent     = `$${totalExpenses.TransportTotal}`;
-	DOM.entertainmentTotal.textContent = `$${totalExpenses.EntertainmentTotal}`;
-	DOM.shoppingTotal.textContent      = `$${totalExpenses.ShoppingTotal}`;
-	DOM.otherTotal.textContent         = `$${totalExpenses.OtherTotal}`;
+	let formatted;
+	let formattedAmount = [];
+	const amountValues  = Object.values(totalExpenses);
+	
+	for (let i=0; i<amountValues.length; i++)
+	{
+		formatted = amountValues[i].toLocaleString();
+		formattedAmount.push(formatted);
+	}
+	console.log(amountValues);
+	console.log(formattedAmount);
+
+
+	DOM.totalExpense.textContent       = `$${formattedAmount[0]}`; 
+	//DOM.totalExpense.textContent       = `$${totalExpenses.Total}`; 
+	DOM.foodTotal.textContent          = `$${formattedAmount[1]}`;
+	DOM.transportTotal.textContent     = `$${formattedAmount[2]}`;
+	DOM.entertainmentTotal.textContent = `$${formattedAmount[3]}`;
+	DOM.shoppingTotal.textContent      = `$${formattedAmount[4]}`;
+	DOM.otherTotal.textContent         = `$${formattedAmount[5]}`;
 }
 
 
@@ -189,7 +206,8 @@ DOM.expenseForm.addEventListener('submit', function(e)
 
     console.log("Before Delete", {...expenseItems});
 
-    console.log("Total Expense before edit:", {...totalExpenses})
+    console.log("Total Expense before edit:", {...totalExpenses});
+
 
 });
 
@@ -225,20 +243,23 @@ DOM.expenseList.addEventListener('click', function(e)
 
         
         // update category
-        let updateCategory = prompt("Please select the category (Food, Transport, Entertainment, Shopping, Other): ");
+        let updateCategory		     = prompt("Please select the category (Food, Transport, Entertainment, Shopping, Other): ");
+		let updateCategoryFlexible   = updateCategory.charAt(0).toUpperCase() + updateCategory.slice(1);
 
         while
         (!(
-            updateCategory === "Food" ||
-            updateCategory === "Transport" ||
-            updateCategory === "Entertainment" ||
-            updateCategory === "Shopping" ||
-            updateCategory === "Other"
+            updateCategoryFlexible === "Food" ||
+            updateCategoryFlexible === "Transport" ||
+            updateCategoryFlexible === "Entertainment" ||
+            updateCategoryFlexible === "Shopping" ||
+            updateCategoryFlexible === "Other"
         ))
         {
-            updateCategory = prompt("Please only write either Food, Transport, Entertainment, Shopping or Other");
+            updateCategory			 = prompt("Please only write either Food, Transport, Entertainment, Shopping or Other");
+			updateCategoryFlexible   = updateCategory.charAt(0).toUpperCase() + updateCategory.slice(1);
         }
-
+		
+		console.log(updateCategoryFlexible);
 
 		// removing the amount from current expense category
 		if (totalExpenses[`${expense.category}Total`] - expense.amount < 0)
@@ -251,7 +272,7 @@ DOM.expenseList.addEventListener('click', function(e)
 		}
 
 		// updating the category to newly updated category
-        expense.category = updateCategory
+        expense.category = updateCategoryFlexible
 
         
         // update amount
@@ -273,8 +294,7 @@ DOM.expenseList.addEventListener('click', function(e)
 			totalExpenses.OtherTotal
 		);
 
-		expense.amount = updateAmount;
-
+		expense.amount        = updateAmount;
 
 		renderSpentValues();
         renderExpense();
