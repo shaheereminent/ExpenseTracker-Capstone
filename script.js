@@ -47,9 +47,9 @@ const totalExpenses =
     ShoppingTotal      : 0,
     OtherTotal         : 0,
 
-    calculateTotal     :function(n1, n2, n3, n4, n5)
+    calculateTotal     :function()
     {
-        return this.Total = n1 + n2 + n3 + n4 + n5;
+        return this.Total = this.FoodTotal + this.TransportTotal + this.EntertainmentTotal + this.ShoppingTotal + this.OtherTotal;
     }
 };
 
@@ -99,25 +99,18 @@ const expenseToHTML = function(expense)
 
 const renderSpentValues = function()
 {
-	let formatted;
-	let formattedAmount = [];
-	const amountValues  = Object.values(totalExpenses);
-	
-	for (let i=0; i<amountValues.length; i++)
+
+	const formattedValue = function(value)
 	{
-		formatted = amountValues[i].toLocaleString();
-		formattedAmount.push(formatted);
+		return `$${value.toLocaleString()}`;
 	}
-	console.log(amountValues);
-	console.log(formattedAmount);
 
-
-	DOM.totalExpense.textContent       = `$${formattedAmount[0]}`; 
-	DOM.foodTotal.textContent          = `$${formattedAmount[1]}`;
-	DOM.transportTotal.textContent     = `$${formattedAmount[2]}`;
-	DOM.entertainmentTotal.textContent = `$${formattedAmount[3]}`;
-	DOM.shoppingTotal.textContent      = `$${formattedAmount[4]}`;
-	DOM.otherTotal.textContent         = `$${formattedAmount[5]}`;
+	DOM.totalExpense.textContent       = formattedValue(totalExpenses.Total); 
+	DOM.foodTotal.textContent          = formattedValue(totalExpenses.FoodTotal);
+	DOM.transportTotal.textContent     = formattedValue(totalExpenses.TransportTotal);
+	DOM.entertainmentTotal.textContent = formattedValue(totalExpenses.EntertainmentTotal);
+	DOM.shoppingTotal.textContent      = formattedValue(totalExpenses.ShoppingTotal);
+	DOM.otherTotal.textContent         = formattedValue(totalExpenses.OtherTotal);
 }
 
 
@@ -129,7 +122,7 @@ const showAlert = function(message)
 	setTimeout(() =>
 	{
 		DOM.alertPopup.classList.add('hidden');
-	}, 5000)
+	}, 4000)
 }
 
 
@@ -187,14 +180,7 @@ DOM.expenseForm.addEventListener('submit', function(e)
     totalExpenses[`${expense.category}Total`] += expense.amount;
 
     // calculate total amount
-    totalExpenses.calculateTotal
-    (
-        totalExpenses.FoodTotal,
-        totalExpenses.TransportTotal,
-        totalExpenses.EntertainmentTotal,
-        totalExpenses.ShoppingTotal,
-        totalExpenses.OtherTotal
-    );
+    totalExpenses.calculateTotal();
 
     // resetting values upon submit because user can directly start adding another expense rather than removing each input value themselves
     DOM.description.value = "";
@@ -207,10 +193,6 @@ DOM.expenseForm.addEventListener('submit', function(e)
     renderExpense();
 
 	showAlert("Expense Item Added ✅");
-
-    console.log("Before Delete", {...expenseItems});
-
-    console.log("Total Expense before edit:", {...totalExpenses});
 
 });
 
@@ -288,24 +270,13 @@ DOM.expenseList.addEventListener('click', function(e)
         };
 
 		totalExpenses[`${expense.category}Total`] += updateAmount;
-		totalExpenses.calculateTotal
-		(
-			totalExpenses.FoodTotal,
-			totalExpenses.TransportTotal,
-			totalExpenses.EntertainmentTotal,
-			totalExpenses.ShoppingTotal,
-			totalExpenses.OtherTotal
-		);
+		totalExpenses.calculateTotal();
 
-		expense.amount        = updateAmount;
+		expense.amount = updateAmount;
 
 		renderSpentValues();
         renderExpense();
 		showAlert("Expense Item Updated 📄");
-
-        console.log({...expenseItems})
-        console.log({...totalExpenses})
-
 
         return;
     };
@@ -321,25 +292,17 @@ DOM.expenseList.addEventListener('click', function(e)
         // finding the index because we need to get the object for the current index
         let index = expenseItems.findIndex(item => item.id === id);
 
-
         // find the actual object because we need to manipulate totalExpenses based on deleted item
         let expense = expenseItems.find(item => item.id === id);
 
 
         // deducting amount because amount needs to updated when an item is deleted
         totalExpenses[`${expense.category}Total`] -= expense.amount;
-        totalExpenses.calculateTotal
-        (
-            totalExpenses.FoodTotal,
-            totalExpenses.TransportTotal,
-            totalExpenses.EntertainmentTotal,
-            totalExpenses.ShoppingTotal,
-            totalExpenses.OtherTotal
-        );
+        totalExpenses.calculateTotal();
 
 
         // removing the selected item
-        expenseItems.splice(expense, 1);
+        expenseItems.splice(index, 1);
 
 		renderSpentValues();
         renderExpense();
