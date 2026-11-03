@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpensePal — UI Mockup</title>
+    <style>
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f1117;
+            --bg-secondary: #1a1d27;
+            --bg-card: #222633;
+            --bg-hover: #2a2e3d;
+            --bg-input: #181b24;
+            --border: #2e3347;
+            --text-primary: #e8e9ed;
+            --text-secondary: #9499ad;
+            --text-muted: #5e6378;
+            --accent: #6c5ce7;
+            --accent-hover: #7e70f0;
+            --accent-glow: rgba(108, 92, 231, 0.15);
+            --green: #00b894;
+            --green-bg: rgba(0, 184, 148, 0.1);
+            --red: #e74c6f;
+            --red-bg: rgba(231, 76, 111, 0.1);
+            --orange: #f39c12;
+            --orange-bg: rgba(243, 156, 18, 0.1);
+            --blue: #0984e3;
+            --blue-bg: rgba(9, 132, 227, 0.1);
+            --pink: #e84393;
+            --pink-bg: rgba(232, 67, 147, 0.1);
+            --yellow: #fdcb6e;
+            --yellow-bg: rgba(253, 203, 110, 0.1);
+            --teal: #00cec9;
+            --teal-bg: rgba(0, 206, 201, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --transition: all 0.2s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .view-toggle-btn {
+            padding: 8px 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .view-toggle-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .nav-period {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 16px;
+        }
+
+        .nav-arrow {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .nav-arrow:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .period-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .currency-select {
+            padding: 8px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-size: 13px;
+            cursor: pointer;
+            appearance: none;
+            padding-right: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239499ad' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .settings-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .settings-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        /* ==================== MAIN LAYOUT ==================== */
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 0;
+            min-height: calc(100vh - 65px);
+        }
+
+        .left-panel {
+            padding: 24px 32px;
+            overflow-y: auto;
+        }
+
+        .right-panel {
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ==================== SUMMARY CARDS ==================== */
+        .summary-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .summary-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent-glow);
+        }
+
+        .summary-card-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .summary-card-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .summary-card-sub {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .summary-card.total {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent-glow), var(--bg-card));
+        }
+
+        .summary-card.total .summary-card-value {
+            color: var(--accent);
+        }
+
+        /* ==================== CATEGORY BREAKDOWN ==================== */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .category-breakdown {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .category-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .category-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .category-row:first-child {
+            padding-top: 0;
+        }
+
+        .category-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .category-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .category-name {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .category-bar-wrap {
+            flex: 1;
+            max-width: 200px;
+            height: 6px;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            margin: 0 16px;
+            overflow: hidden;
+        }
+
+        .category-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .category-amount {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .category-percent {
+            font-size: 12px;
+            color: var(--text-muted);
+            min-width: 40px;
+            text-align: right;
+        }
+
+        /* ==================== CATEGORY FILTER CHIPS ==================== */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-chip:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .filter-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .filter-chip.add-category {
+            border-style: dashed;
+            color: var(--text-muted);
+        }
+
+        .filter-chip.add-category:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ==================== EXPENSE LIST ==================== */
+        .expense-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 8px 14px;
+            gap: 8px;
+            flex: 1;
+            max-width: 320px;
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--accent);
+        }
+
+        .search-icon {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .toolbar-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .expense-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .expense-table-header {
+            display: grid;
+            grid-template-columns: 1fr 140px 140px 120px 80px;
+            padding: 12px 20px;
+            background: var(--bg-input);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .expense-table-header span {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .expense-row {
+            display: grid;
+            grid-template-columns: 1fr 140px 140px 120px 80px;
+            padding: 14px 20px;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .expense-row:hover {
+            background: var(--bg-hover);
+        }
+
+        .expense-row:last-child {
+            border-bottom: none;
+        }
+
+        .expense-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .expense-category-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .expense-category-tag.food { background: var(--red-bg); color: var(--red); }
+        .expense-category-tag.transport { background: var(--blue-bg); color: var(--blue); }
+        .expense-category-tag.shopping { background: var(--pink-bg); color: var(--pink); }
+        .expense-category-tag.bills { background: var(--orange-bg); color: var(--orange); }
+        .expense-category-tag.entertainment { background: var(--teal-bg); color: var(--teal); }
+        .expense-category-tag.health { background: var(--green-bg); color: var(--green); }
+
+        .expense-amount {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .expense-date {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .expense-actions {
+            display: flex;
+            gap: 4px;
+            justify-content: flex-end;
+        }
+
+        .action-btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 13px;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            background: var(--bg-input);
+            color: var(--text-primary);
+        }
+
+        .action-btn.delete:hover {
+            background: var(--red-bg);
+            color: var(--red);
+        }
+
+        /* ==================== RIGHT PANEL — PET ==================== */
+        .pet-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pet-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pet-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .pet-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .pet-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        .pet-canvas-area {
+            flex: 1;
+            background: linear-gradient(180deg, #1a1d27 0%, #222633 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 280px;
+        }
+
+        /* Placeholder cat using pure CSS */
+        .cat-placeholder {
+            position: relative;
+            width: 120px;
+            height: 100px;
+        }
+
+        .cat-body {
+            width: 80px;
+            height: 55px;
+            background: #f39c12;
+            border-radius: 40px 40px 30px 30px;
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+        }
+
+        .cat-head {
+            width: 50px;
+            height: 45px;
+            background: #f39c12;
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            bottom: 40px;
+            left: 35px;
+        }
+
+        .cat-ear-left {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 16px solid #f39c12;
+            position: absolute;
+            bottom: 78px;
+            left: 37px;
+        }
+
+        .cat-ear-right {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 16px solid #f39c12;
+            position: absolute;
+            bottom: 78px;
+            left: 67px;
+        }
+
+        .cat-eye-left,
+        .cat-eye-right {
+            width: 6px;
+            height: 8px;
+            background: #2d3436;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 60px;
+        }
+
+        .cat-eye-left { left: 47px; }
+        .cat-eye-right { left: 67px; }
+
+        .cat-nose {
+            width: 5px;
+            height: 3px;
+            background: #e84393;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 55px;
+            left: 57px;
+        }
+
+        .cat-tail {
+            width: 40px;
+            height: 8px;
+            background: #f39c12;
+            border-radius: 4px;
+            position: absolute;
+            bottom: 10px;
+            left: -10px;
+            transform: rotate(-15deg);
+        }
+
+        /* Speech Bubble */
+        .speech-bubble {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px 12px 12px 4px;
+            padding: 12px 16px;
+            max-width: 180px;
+            box-shadow: var(--shadow);
+        }
+
+        .speech-bubble p {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .speech-bubble .pet-emoji {
+            font-size: 16px;
+        }
+
+        .pet-actions {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+        }
+
+        .pet-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .pet-btn:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent);
+        }
+
+        .pet-btn.feed {
+            background: var(--orange-bg);
+            border-color: rgba(243, 156, 18, 0.3);
+            color: var(--orange);
+        }
+
+        .pet-btn.feed:hover {
+            background: rgba(243, 156, 18, 0.2);
+        }
+
+        /* Pet stats */
+        .pet-stats {
+            padding: 0 20px 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .pet-stat {
+            flex: 1;
+        }
+
+        .pet-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .pet-stat-bar {
+            height: 4px;
+            background: var(--bg-primary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .pet-stat-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .pet-stat-fill.hunger { background: var(--orange); }
+        .pet-stat-fill.happiness { background: var(--green); }
+
+        /* ==================== QUICK QUOTE SECTION ==================== */
+        .quote-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .quote-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .quote-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* ==================== ADD EXPENSE MODAL ==================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            width: 440px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .form-input {
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-date {
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-date-icon {
+            color: var(--text-muted);
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* ==================== ONBOARDING OVERLAY ==================== */
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            display: none; /* Change to flex to preview */
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+        }
+
+        .onboarding-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            width: 480px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .onboarding-emoji {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .onboarding-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .onboarding-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .onboarding-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .skin-picker {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 4px;
+        }
+
+        .skin-option {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .skin-option:hover {
+            border-color: var(--accent);
+        }
+
+        .skin-option.selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* ==================== STORAGE WARNING BAR ==================== */
+        .storage-warning {
+            display: none; /* Change to flex to preview */
+            background: var(--orange-bg);
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 12px 20px;
+            margin: 24px 32px 0;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .storage-warning-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .storage-warning-text {
+            font-size: 13px;
+            color: var(--orange);
+            flex: 1;
+        }
+
+        .storage-warning .btn {
+            font-size: 12px;
+            padding: 6px 14px;
+            flex-shrink: 0;
+        }
+
+        /* ==================== DELETE CATEGORY MODAL ==================== */
+        .delegation-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none; /* Change to flex to preview */
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            backdrop-filter: blur(4px);
+        }
+
+        .delegation-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .delegation-option {
+            padding: 14px 16px;
+            background: var(--bg-input);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .delegation-option:hover {
+            border-color: var(--accent);
+        }
+
+        .delegation-option.selected {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .delegation-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--text-muted);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .delegation-option.selected .delegation-radio {
+            border-color: var(--accent);
+        }
+
+        .delegation-option.selected .delegation-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .delegation-label {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .delegation-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .right-panel {
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .pet-canvas-area {
+                min-height: 200px;
+            }
+
+            .header {
+                flex-wrap: wrap;
+                gap: 12px;
+                padding: 12px 16px;
+            }
+
+            .header-center {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .left-panel {
+                padding: 16px;
+            }
+
+            .summary-row {
+                grid-template-columns: 1fr;
+            }
+
+            .expense-table-header,
+            .expense-row {
+                grid-template-columns: 1fr 100px 100px 80px;
+            }
+
+            .expense-table-header span:nth-child(4),
+            .expense-row > *:nth-child(4) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .expense-table-header,
+            .expense-row {
+                grid-template-columns: 1fr 80px 60px;
+            }
+
+            .expense-table-header span:nth-child(3),
+            .expense-row > *:nth-child(3) {
+                display: none;
+            }
+
+            .expense-table-header span:nth-child(4),
+            .expense-row > *:nth-child(4),
+            .expense-table-header span:nth-child(5),
+            .expense-row > *:nth-child(5) {
+                display: none;
+            }
+
+            .filter-bar {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 8px;
+            }
+
+            .expense-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: none;
+            }
+
+            .toolbar-actions {
+                justify-content: stretch;
+            }
+
+            .toolbar-actions .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">🐱 <span>Expense</span>Pal</div>
+        </div>
+
+        <div class="header-center">
+            <div class="view-toggle">
+                <button class="view-toggle-btn">Weekly</button>
+                <button class="view-toggle-btn active">Monthly</button>
+                <button class="view-toggle-btn">Yearly</button>
+            </div>
+            <div class="nav-period">
+                <button class="nav-arrow">◀</button>
+                <span class="period-label">July 2025</span>
+                <button class="nav-arrow">▶</button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <select class="currency-select">
+                <option>$ USD</option>
+                <option>€ EUR</option>
+                <option>£ GBP</option>
+                <option>₹ INR</option>
+                <option>¥ JPY</option>
+                <option>₨ PKR</option>
+                <option>C$ CAD</option>
+                <option>A$ AUD</option>
+            </select>
+            <button class="settings-btn">⚙</button>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main">
+
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+
+            <!-- Summary Cards -->
+            <div class="summary-row">
+                <div class="summary-card total">
+                    <div class="summary-card-label">Total Spent</div>
+                    <div class="summary-card-value">$2,847.50</div>
+                    <div class="summary-card-sub">July 2025</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-label">Transactions</div>
+                    <div class="summary-card-value">34</div>
+                    <div class="summary-card-sub">This month</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-card-label">Top Category</div>
+                    <div class="summary-card-value">Food</div>
+                    <div class="summary-card-sub">$820.00 (28.8%)</div>
+                </div>
+            </div>
+
+            <!-- Category Breakdown -->
+            <div class="section-header">
+                <span class="section-title">Category Breakdown</span>
+            </div>
+            <div class="category-breakdown">
+                <div class="category-row">
+                    <div class="category-left">
+                        <div class="category-dot" style="background: var(--red)"></div>
+                        <span class="category-name">Food</span>
+                    </div>
+                    <div class="category-bar-wrap">
+                        <div class="category-bar" style="width: 72%; background: var(--red)"></div>
+                    </div>
+                    <span class="category-amount">$820.00</span>
+                    <span class="category-percent">28.8%</span>
+                </div>
+                <div class="category-row">
+                    <div class="category-left">
+                        <div class="category-dot" style="background: var(--blue)"></div>
+                        <span class="category-name">Transport</span>
+                    </div>
+                    <div class="category-bar-wrap">
+                        <div class="category-bar" style="width: 45%; background: var(--blue)"></div>
+                    </div>
+                    <span class="category-amount">$520.00</span>
+                    <span class="category-percent">18.3%</span>
+                </div>
+                <div class="category-row">
+                    <div class="category-left">
+                        <div class="category-dot" style="background: var(--pink)"></div>
+                        <span class="category-name">Shopping</span>
+                    </div>
+                    <div class="category-bar-wrap">
+                        <div class="category-bar" style="width: 38%; background: var(--pink)"></div>
+                    </div>
+                    <span class="category-amount">$435.50</span>
+                    <span class="category-percent">15.3%</span>
+                </div>
+                <div class="category-row">
+                    <div class="category-left">
+                        <div class="category-dot" style="background: var(--orange)"></div>
+                        <span class="category-name">Bills</span>
+                    </div>
+                    <div class="category-bar-wrap">
+                        <div class="category-bar" style="width: 52%; background: var(--orange)"></div>
+                    </div>
+                    <span class="category-amount">$600.00</span>
+                    <span class="category-percent">21.1%</span>
+                </div>
+                <div class="category-row">
+                    <div class="category-left">
+                        <div class="category-dot" style="background: var(--teal)"></div>
+                        <span class="category-name">Entertainment</span>
+                    </div>
+                    <div class="category-bar-wrap">
+                        <div class="category-bar" style="width: 22%; background: var(--teal)"></div>
+                    </div>
+                    <span class="category-amount">$250.00</span>
+                    <span class="category-percent">8.8%</span>
+                </div>
+                <div class="category-row">
+                    <div class="category-left">
+                        <div class="category-dot" style="background: var(--green)"></div>
+                        <span class="category-name">Health</span>
+                    </div>
+                    <div class="category-bar-wrap">
+                        <div class="category-bar" style="width: 19%; background: var(--green)"></div>
+                    </div>
+                    <span class="category-amount">$222.00</span>
+                    <span class="category-percent">7.8%</span>
+                </div>
+            </div>
+
+            <!-- Filter Chips -->
+            <div class="filter-bar">
+                <span class="filter-chip active">All</span>
+                <span class="filter-chip">🍔 Food</span>
+                <span class="filter-chip">🚌 Transport</span>
+                <span class="filter-chip">🛍️ Shopping</span>
+                <span class="filter-chip">📄 Bills</span>
+                <span class="filter-chip">🎮 Entertainment</span>
+                <span class="filter-chip">💊 Health</span>
+                <span class="filter-chip">📚 Education</span>
+                <span class="filter-chip">📦 Other</span>
+                <span class="filter-chip add-category">+ Custom</span>
+            </div>
+
+            <!-- Expense Toolbar -->
+            <div class="expense-toolbar">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input class="search-input" type="text" placeholder="Search expenses...">
+                </div>
+                <div class="toolbar-actions">
+                    <button class="btn btn-secondary">📄 Export PDF</button>
+                    <button class="btn btn-primary">+ Add Expense</button>
+                </div>
+            </div>
+
+            <!-- Expense Table -->
+            <div class="expense-table">
+                <div class="expense-table-header">
+                    <span>Name</span>
+                    <span>Category</span>
+                    <span>Amount</span>
+                    <span>Date</span>
+                    <span></span>
+                </div>
+                <div class="expense-row">
+                    <span class="expense-name">Grocery shopping</span>
+                    <span><span class="expense-category-tag food">🍔 Food</span></span>
+                    <span class="expense-amount">$145.30</span>
+                    <span class="expense-date">Jul 11, 2025</span>
+                    <span class="expense-actions">
+                        <button class="action-btn" title="Edit">✏️</button>
+                        <button class="action-btn delete" title="Delete">🗑️</button>
+                    </span>
+                </div>
+                <div class="expense-row">
+                    <span class="expense-name">Uber to airport</span>
+                    <span><span class="expense-category-tag transport">🚌 Transport</span></span>
+                    <span class="expense-amount">$38.50</span>
+                    <span class="expense-date">Jul 10, 2025</span>
+                    <span class="expense-actions">
+                        <button class="action-btn" title="Edit">✏️</button>
+                        <button class="action-btn delete" title="Delete">🗑️</button>
+                    </span>
+                </div>
+                <div class="expense-row">
+                    <span class="expense-name">New headphones</span>
+                    <span><span class="expense-category-tag shopping">🛍️ Shopping</span></span>
+                    <span class="expense-amount">$89.99</span>
+                    <span class="expense-date">Jul 9, 2025</span>
+                    <span class="expense-actions">
+                        <button class="action-btn" title="Edit">✏️</button>
+                        <button class="action-btn delete" title="Delete">🗑️</button>
+                    </span>
+                </div>
+                <div class="expense-row">
+                    <span class="expense-name">Electricity bill</span>
+                    <span><span class="expense-category-tag bills">📄 Bills</span></span>
+                    <span class="expense-amount">$120.00</span>
+                    <span class="expense-date">Jul 8, 2025</span>
+                    <span class="expense-actions">
+                        <button class="action-btn" title="Edit">✏️</button>
+                        <button class="action-btn delete" title="Delete">🗑️</button>
+                    </span>
+                </div>
+                <div class="expense-row">
+                    <span class="expense-name">Movie tickets</span>
+                    <span><span class="expense-category-tag entertainment">🎮 Entertainment</span></span>
+                    <span class="expense-amount">$24.00</span>
+                    <span class="expense-date">Jul 7, 2025</span>
+                    <span class="expense-actions">
+                        <button class="action-btn" title="Edit">✏️</button>
+                        <button class="action-btn delete" title="Delete">🗑️</button>
+                    </span>
+                </div>
+                <div class="expense-row">
+                    <span class="expense-name">Pharmacy</span>
+                    <span><span class="expense-category-tag health">💊 Health</span></span>
+                    <span class="expense-amount">$42.00</span>
+                    <span class="expense-date">Jul 6, 2025</span>
+                    <span class="expense-actions">
+                        <button class="action-btn" title="Edit">✏️</button>
+                        <button class="action-btn delete" title="Delete">🗑️</button>
+                    </span>
+                </div>
+                <div class="expense-row">
+                    <span class="expense-name">Coffee & snacks</span>
+                    <span><span class="expense-category-tag food">🍔 Food</span></span>
+                    <span class="expense-amount">$8.75</span>
+                    <span class="expense-date">Jul 5, 2025</span>
+                    <span class="expense-actions">
+                        <button class="action-btn" title="Edit">✏️</button>
+                        <button class="action-btn delete" title="Delete">🗑️</button>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT PANEL — PET -->
+        <div class="right-panel">
+            <div class="pet-section">
+                <div class="pet-header">
+                    <span class="pet-name">🐱 Mochi</span>
+                    <span class="pet-status">
+                        <span class="pet-status-dot"></span>
+                        Happy
+                    </span>
+                </div>
+                <div class="pet-canvas-area">
+                    <!-- CSS cat placeholder — will be replaced by Canvas -->
+                    <div class="cat-placeholder">
+                        <div class="cat-ear-left"></div>
+                        <div class="cat-ear-right"></div>
+                        <div class="cat-head"></div>
+                        <div class="cat-eye-left"></div>
+                        <div class="cat-eye-right"></div>
+                        <div class="cat-nose"></div>
+                        <div class="cat-body"></div>
+                        <div class="cat-tail"></div>
+                    </div>
+                    <div class="speech-bubble">
+                        <p>Good morning, Alex! <span class="pet-emoji">☀️</span></p>
+                        <p>You're doing great this month!</p>
+                    </div>
+                </div>
+                <div class="pet-stats">
+                    <div class="pet-stat">
+                        <div class="pet-stat-label">Hunger</div>
+                        <div class="pet-stat-bar">
+                            <div class="pet-stat-fill hunger" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    <div class="pet-stat">
+                        <div class="pet-stat-label">Happiness</div>
+                        <div class="pet-stat-bar">
+                            <div class="pet-stat-fill happiness" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pet-actions">
+                    <button class="pet-btn feed">🍖 Feed</button>
+                    <button class="pet-btn">🤚 Pet</button>
+                </div>
+            </div>
+
+            <div class="quote-section">
+                <span class="quote-icon">💬</span>
+                <p class="quote-text">"Every penny tracked is a step towards your goals. Keep it up! You've been consistent for 5 days straight!" — Mochi 🐱</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================== ADD EXPENSE MODAL ==================== -->
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title">Add New Expense</span>
+                <button class="modal-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Expense Name</label>
+                    <input class="form-input" type="text" placeholder="e.g. Grocery shopping">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Amount</label>
+                    <input class="form-input" type="number" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select class="form-input">
+                        <option>🍔 Food</option>
+                        <option>🚌 Transport</option>
+                        <option>🛍️ Shopping</option>
+                        <option>📄 Bills</option>
+                        <option>🎮 Entertainment</option>
+                        <option>💊 Health</option>
+                        <option>📚 Education</option>
+                        <option>📦 Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Date (Auto)</label>
+                    <div class="form-date">
+                        <span class="form-date-icon">📅</span>
+                        July 11, 2025 — Today
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary">Cancel</button>
+                <button class="btn btn-primary">+ Add Expense</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
