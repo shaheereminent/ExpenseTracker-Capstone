@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Redaction+50:ital,wght@0,400;0,700;1,400&display=swap');
+
 /* -------------------- UNIVERSAL -------------------- */
 *,
 *::before,
-*::after {
+*::after
+{
     margin: 0;
     padding: 0;
     border: 0;
@@ -16,101 +19,124 @@
 }
 
 /* -------------------- DOCUMENT -------------------- */
-html {
-    scroll-behavior: smooth;
+html
+{
+    scroll-behavior			: smooth;
     -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-text-size-adjust   : 100%;
+	font-family			    : "Redaction 50", serif;;
+    text-size-adjust	    : 100%;
+    text-rendering		    : optimizeLegibility;
+    -webkit-font-smoothing  :  antialiased;
+    -moz-osx-font-smoothing : grayscale;
 }
 
-body {
-    min-height: 100vh;
-    line-height: 1.5;
+body
+{
+	display       : flex;
+	flex-direction: column;
+	gap			  : 16px;
+
+    height        : 100vh;
+    line-height   : 1.5;
+	padding	      : 16px;
 }
 
 /* -------------------- HEADINGS -------------------- */
-h1, h2, h3, h4, h5, h6 {
-    font-size: inherit;
+h1, h2, h3, h4, h5, h6
+{
+    font-size  : inherit;
     font-weight: inherit;
 }
 
 /* -------------------- TEXT -------------------- */
-p, blockquote, q, pre, code, kbd, samp {
+p, blockquote, q, pre, code, kbd, samp
+{
     font-size: inherit;
 }
 
-pre, code, kbd, samp {
+pre, code, kbd, samp
+{
     font-family: monospace, monospace;
 }
 
-blockquote, q {
+blockquote, q
+{
     quotes: none;
 }
 
 blockquote::before,
 blockquote::after,
 q::before,
-q::after {
+q::after
+{
     content: '';
     content: none;
 }
 
-b, strong {
+b, strong
+{
     font-weight: bold;
 }
 
-i, em {
+i, em
+{
     font-style: italic;
 }
 
-small {
+small
+{
     font-size: inherit;
 }
 
-sub, sup {
-    position: static;
-    font-size: inherit;
+sub, sup
+{
+    position   : static;
+    font-size  : inherit;
     line-height: inherit;
 }
 
 /* -------------------- LINKS -------------------- */
-a {
-    color: inherit;
-    text-decoration: none;
+a
+{
+    color		    : inherit;
+    text-decoration : none;
     background-color: transparent;
-    cursor: pointer;
+    cursor          : pointer;
 }
 
 a:hover,
 a:focus,
 a:active,
-a:visited {
-    color: inherit;
+a:visited
+{
+    color          : inherit;
     text-decoration: none;
-    outline: none;
+    outline		   : none;
 }
 
 /* -------------------- LISTS -------------------- */
-ul, ol, li, dl, dt, dd {
+ul, ol, li, dl, dt, dd
+{
     list-style: none;
-    margin: 0;
-    padding: 0;
+    margin    : 0;
+    padding   : 0;
 }
 
 /* -------------------- MEDIA -------------------- */
-img, picture, video, canvas, svg, audio, iframe, embed, object {
-    display: block;
+img, picture, video, canvas, svg, audio, iframe, embed, object
+{
+    display  : block;
     max-width: 100%;
 }
 
-img, picture, video {
+img, picture, video
+{
     height: auto;
 }
 
-svg {
+svg
+{
     overflow: hidden;
 }
 
@@ -119,147 +145,228 @@ button,
 input,
 optgroup,
 select,
-textarea {
-    font: inherit;
-    color: inherit;
-    background: transparent;
-    border: none;
-    outline: none;
-    appearance: none;
+textarea
+{
+    font			  : inherit;
+    color			  : inherit;
+    background		  : transparent;
+    border			  : none;
+    outline           : none;
+    appearance        : none;
     -webkit-appearance: none;
-    -moz-appearance: none;
-    border-radius: 0;
-    box-shadow: none;
+    -moz-appearance   : none;
+    border-radius     : 0;
+    box-shadow        : none;
 }
 
-button {
-    cursor: pointer;
-    padding: 0;
-    text-align: inherit;
-    line-height: inherit;
-    overflow: visible;
+button
+{
+    cursor		  : pointer;
+    padding		  : 0;
+    text-align    : inherit;
+    line-height   : inherit;
+    overflow      : visible;
     text-transform: none;
 }
 
 button::-moz-focus-inner,
-input::-moz-focus-inner {
+input::-moz-focus-inner
+{
     border: 0;
     padding: 0;
 }
 
-input[type="search"] {
-    appearance: none;
+input[type="search"]
+{
+    appearance        : none;
     -webkit-appearance: none;
 }
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
+input[type="search"]::-webkit-search-results-decoration
+{
     display: none;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    height: auto;
-    appearance: none;
+input[type="number"]::-webkit-outer-spin-button
+{
+    height			  : auto;
+    appearance		  : none;
     -webkit-appearance: none;
 }
 
-textarea {
-    resize: vertical;
+textarea
+{
+    resize	: vertical;
     overflow: auto;
 }
 
-select {
+select
+{
     text-transform: none;
 }
 
-fieldset {
+fieldset
+{
     min-width: 0;
 }
 
-legend {
-    display: table;
-    max-width: 100%;
+legend
+{
+    display    : table;
+    max-width  : 100%;
     white-space: normal;
-    color: inherit;
-    padding: 0;
+    color      : inherit;
+    padding	   : 0;
 }
 
-label {
+label
+{
     cursor: pointer;
 }
 
 /* -------------------- TABLES -------------------- */
-table {
+table
+{
     border-collapse: collapse;
-    border-spacing: 0;
+    border-spacing : 0;
 }
 
-caption, th, td {
-    text-align: inherit;
+caption, th, td
+{
+    text-align : inherit;
     font-weight: inherit;
-    padding: 0;
+    padding	   : 0;
 }
 
 /* -------------------- INTERACTIVE -------------------- */
-details {
+details
+{
     display: block;
 }
 
-summary {
-    display: list-item;
-    cursor: pointer;
+summary
+{
+    display   : list-item;
+    cursor    : pointer;
     list-style: none;
 }
 
-summary::-webkit-details-marker {
+summary::-webkit-details-marker
+{
     display: none;
 }
 
-dialog {
-    padding: 0;
-    border: none;
+dialog
+{
+    padding   : 0;
+    border    : none;
     background: transparent;
 }
 
 /* -------------------- MISC -------------------- */
-hr {
-    height: 0;
-    border: none;
+hr
+{
+    height    : 0;
+    border    : none;
     border-top: 1px solid currentColor;
-    color: inherit;
-    overflow: visible;
+    color     : inherit;
+    overflow  : visible;
 }
 
-abbr[title] {
+abbr[title]
+{
     text-decoration: none;
-    border-bottom: none;
+    border-bottom  : none;
 }
 
-mark {
+mark
+{
     background-color: transparent;
-    color: inherit;
+    color           : inherit;
 }
 
-[hidden] {
+[hidden]
+{
     display: none !important;
 }
 
 /* -------------------- ACCESSIBILITY -------------------- */
-:focus-visible {
-    outline: 2px solid currentColor;
+:focus-visible
+{
+    outline		  : 2px solid currentColor;
     outline-offset: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    *,
+@media (prefers-reduced-motion: reduce)
+{
+	*,
     *::before,
-    *::after {
+    *::after
+	{
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+/* -------------------- NAVBAR -------------------- */
+nav
+{
+	display		   : flex;
+	align-items	   : center;
+	justify-content: space-between;
+}
+
+nav img
+{
+	height: 48px;
+}
+
+/* -------------------- CANVAS -------------------- */
+.canvas
+{
+	display		   : flex;
+	align-items    : center;
+	justify-content: center;
+	padding		   : 56px;
+	border-radius  : 24px;
+	border		   : 1px solid #141414;
+}
+
+/* -------------------- COLUMN -------------------- */
+
+.column
+{
+	display	       : flex;
+	justify-content: center;
+	gap			   : 16px;
+
+	height:		   100%;
+}
+
+.category-card-container
+{
+	display		   : flex;
+	flex		   : 1;
+	align-items    : center;
+	justify-content: center;
+	padding		   : 56px;
+	border-radius  : 24px;
+	border		   : 1px solid #141414;
+}
+
+.expense-list-container
+{
+	display		   : flex;
+	align-items    : center;
+	justify-content: center;
+	flex		   : 2;
+	padding		   : 56px;
+	border-radius  : 24px;
+	border		   : 1px solid #141414;
 }
